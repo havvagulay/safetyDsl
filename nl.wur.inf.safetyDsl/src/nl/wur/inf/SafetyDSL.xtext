@@ -1,0 +1,182 @@
+grammar nl.wur.inf.SafetyDSL with org.eclipse.xtext.common.Terminals
+
+generate safetyDSL "http://www.wur.nl/inf/SafetyDSL"
+
+SafetyFramework:
+	(views+=SafetyViewpoint)+ detail=ImplementationDetail
+;
+
+SafetyViewpoint:
+	HazardViewpoint | SafetyTacticViewpoint | SafetyCriticalViewpoint 
+;
+
+HazardViewpoint:
+	'Hazard View' name=ID '{' 
+		'Elements {'(elements+= HazardElement)+ '}'
+		'Relations {'(relations+=HazardRelation)+ '}' 
+	'}'
+;
+
+HazardElement:
+	Hazard | SafetyRequirement | Consequence | Fault  | FaultTree
+;
+
+Hazard:
+	'hazard' name=ID ';'
+;
+
+SafetyRequirement:
+	'safetyRequirement' name=ID ';' ('{' (subrequirements+=SafetyRequirement)+ '}')?
+;
+
+Consequence:
+	'consequence' name=ID ';'
+;
+
+Fault:
+	'fault' name=ID ';'
+;
+
+FaultTree:
+	'faultTree' name=ID rootNode=PrimaryNode ';'
+;
+
+ORNode returns FaultTreeNode:
+	ANDNode ({ORNodeExpression.left=current} 'OR' right=ANDNode)*
+;
+
+ANDNode returns FaultTreeNode:
+	PrimaryNode ({ANDNodeExpression.left=current} 'AND' right=PrimaryNode)*
+;
+
+PrimaryNode returns FaultTreeNode:
+	value=[Fault] | '(' ORNode ')'
+;
+
+HazardRelation:
+	DerivedFrom | Causes | CausedBy
+;
+
+DerivedFrom:
+	 (safetyRequirements += [SafetyRequirement]) (',' safetyRequirements += [SafetyRequirement])* 'derivedFrom' hazard=[Hazard]   ';' 
+;
+
+Causes:
+	hazard=[Hazard] 'causes' (consequences += [Consequence]) (',' consequences += [Consequence])*  ';'
+;
+
+CausedBy:
+	hazard=[Hazard] 'causedBy' fault = [FaultTree]';'
+;
+
+SafetyTacticViewpoint:
+	'SafetyTacticView' name=ID  '{'
+		(safetyTactics+= SafetyTactic)+ 
+	'}'	
+;
+SafetyTactic:
+	FaultTolerance | FaultAvoidance | FaultDetection
+;
+
+QualifiedName:
+ID ('.' ID)*;
+
+FaultAvoidance:
+	'faultAvoidance' name=ID '{' 'type=' type=STRING 'avoidedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+;
+
+FaultDetection:
+	'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+;
+
+FaultTolerance:
+	'faultTolerance' name=ID '{' 'type=' type=STRING 'toleratedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+;
+
+SafetyCriticalViewpoint:
+	'Safety-CriticalView' name=ID '{' 
+		'Elements {'(elements+= ArchitecturalElement)+ '}'
+		'Relations {'(relations+=SafetyCriticalRelation)+ '}' 
+	'}'
+; 
+
+ArchitecturalElement:
+	SafetyCritical | NonSafetyCritical | Monitor 
+;
+
+SafetyCritical:
+	'safety-critical' name=ID   '{' 'criticalityLevel=' (level=CriticalityLevel) ';'
+									'implementedSafetyRequirements=' (implementedSafetyRequirements+=[SafetyRequirement|QualifiedName]) (',' implementedSafetyRequirements+=[SafetyRequirement|QualifiedName])* ';' 
+									('implementedTactics=' (implementedTactics+=[SafetyTactic|QualifiedName]) (',' implementedTactics+=[SafetyTactic|QualifiedName])* ';' )?
+									('sub-elements='(subelements+=[SafetyCritical|QualifiedName]) (',' subelements+=[SafetyCritical|QualifiedName])* ';' )?
+									('hasState' (states+=[State]) (',' states+=[State])*)? 
+								'}'
+	 ';'    
+;
+
+CriticalityLevel:
+	{LevelA} 'A' | {LevelB} 'B' | {LevelC} 'C' | {LevelD} 'D'
+;
+
+NonSafetyCritical:
+	'non-safety-critical' name=ID ( '{' (subelements+=NonSafetyCritical)* '}' | ';' ) 
+;
+
+Monitor:
+	'monitor' name=ID ('{' 'implementedTactics=' (implementedTactics+=[SafetyTactic|QualifiedName]) (',' implementedTactics+=[SafetyTactic|QualifiedName])* '}')? ';'
+;
+
+State:
+	('state' name=ID | {SafeState} ('safeState' name =ID) ) ';'
+;
+
+SafetyCriticalRelation:
+	ArchElementToArchElement | MonitorToArchitecturalElement | ReportsFault 
+;
+	
+ArchElementToArchElement:
+	{Reads} (element1=[ArchitecturalElement] 'reads' (element2+=[ArchitecturalElement]) (',' element2+=[ArchitecturalElement])* ';') |
+	{Writes} (element1=[ArchitecturalElement] 'writes' (element2+=[ArchitecturalElement]) (',' element2+=[ArchitecturalElement])* ';') |
+	{Commands} (element1=[ArchitecturalElement] 'commands' (element2+=[ArchitecturalElement]) (',' element2+=[ArchitecturalElement])* ';') 
+;
+
+MonitorToArchitecturalElement:
+	{Stops} (monitor=[Monitor] 'stops' (safetyCritical+=[SafetyCritical])  (',' safetyCritical+=[SafetyCritical])* ';') |
+	{Starts} (monitor=[Monitor] 'starts' (safetyCritical+=[SafetyCritical])  (',' safetyCritical+=[SafetyCritical])* ';') |
+	{Inits} (monitor=[Monitor] 'inits' (safetyCritical+=[SafetyCritical])  (',' safetyCritical+=[SafetyCritical])* ';') |
+	{Restarts} (monitor=[Monitor] 'restarts' (safetyCritical+=[SafetyCritical])  (',' safetyCritical+=[SafetyCritical])* ';') |
+	{Monitors} (monitor=[Monitor] 'monitors' (safetyCritical+=[SafetyCritical]) (',' safetyCritical+=[SafetyCritical])* ';') 
+; 
+
+ReportsFault:
+	safetyCritical1=[SafetyCritical] 'reportsFault' (safetyCritical2+=[SafetyCritical]) (',' safetyCritical2+=[SafetyCritical])* ';'
+;
+
+
+ImplementationDetail:
+	'ImplementationRelations {'
+		'Module-Class Relations''{'
+			(moduleClassRelations+=ModuleClassRelation)+
+		'}' ';'
+		
+		'Class-Test Case Relations' '{'
+			(classTestCaseRelations+=ClassTestCaseRelation)+
+		'}'';'
+		
+		  
+	'}'
+;
+
+
+ModuleClassRelation:
+	module=[ArchitecturalElement] 'composesOf' '=' '{' (classes+=(ClassDef)) (',' classes+=(ClassDef))* '}' ';'
+;
+
+ClassTestCaseRelation:
+	clazz=[ClassDef] 'testWith' '=' '{'  (testCases+=QualifiedName) (',' testCases+=QualifiedName)* '}' ';'
+;
+
+ClassDef:
+	name=QualifiedName
+;
+
