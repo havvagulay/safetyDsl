@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="safetyDSL" nsURI="http://www.wur.nl/inf/SafetyDSL" nsPrefix="safetyDSL">
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyFramework">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="views" upperBound="-1"
+        eType="#//SafetyViewpoint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="detail" eType="#//ImplementationDetail"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyViewpoint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HazardViewpoint" eSuperTypes="#//SafetyViewpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//HazardElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//HazardRelation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HazardElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Hazard" eSuperTypes="#//HazardElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyRequirement" eSuperTypes="#//HazardElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subrequirements" upperBound="-1"
+        eType="#//SafetyRequirement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Consequence" eSuperTypes="#//HazardElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fault" eSuperTypes="#//HazardElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FaultTree" eSuperTypes="#//HazardElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootNode" eType="#//FaultTreeNode"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FaultTreeNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Fault"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//FaultTreeNode"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//FaultTreeNode"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HazardRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hazard" eType="#//Hazard"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DerivedFrom" eSuperTypes="#//HazardRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safetyRequirements" unique="false"
+        upperBound="-1" eType="#//SafetyRequirement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Causes" eSuperTypes="#//HazardRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consequences" unique="false"
+        upperBound="-1" eType="#//Consequence"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CausedBy" eSuperTypes="#//HazardRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fault" eType="#//FaultTree"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyTacticViewpoint" eSuperTypes="#//SafetyViewpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safetyTactics" upperBound="-1"
+        eType="#//SafetyTactic" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyTactic">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="handledFaults" unique="false"
+        upperBound="-1" eType="#//Fault"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FaultAvoidance" eSuperTypes="#//SafetyTactic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FaultDetection" eSuperTypes="#//SafetyTactic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FaultTolerance" eSuperTypes="#//SafetyTactic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyCriticalViewpoint" eSuperTypes="#//SafetyViewpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ArchitecturalElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//SafetyCriticalRelation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArchitecturalElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyCritical" eSuperTypes="#//ArchitecturalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="level" eType="#//CriticalityLevel"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementedSafetyRequirements"
+        unique="false" upperBound="-1" eType="#//SafetyRequirement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementedTactics" unique="false"
+        upperBound="-1" eType="#//SafetyTactic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subelements" unique="false"
+        upperBound="-1" eType="#//SafetyCritical"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" unique="false"
+        upperBound="-1" eType="#//State"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CriticalityLevel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NonSafetyCritical" eSuperTypes="#//ArchitecturalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subelements" upperBound="-1"
+        eType="#//NonSafetyCritical" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Monitor" eSuperTypes="#//ArchitecturalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementedTactics" unique="false"
+        upperBound="-1" eType="#//SafetyTactic"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyCriticalRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArchElementToArchElement" eSuperTypes="#//SafetyCriticalRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element1" eType="#//ArchitecturalElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element2" unique="false"
+        upperBound="-1" eType="#//ArchitecturalElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MonitorToArchitecturalElement" eSuperTypes="#//SafetyCriticalRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="monitor" eType="#//Monitor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safetyCritical" unique="false"
+        upperBound="-1" eType="#//SafetyCritical"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReportsFault" eSuperTypes="#//SafetyCriticalRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safetyCritical1" eType="#//SafetyCritical"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safetyCritical2" unique="false"
+        upperBound="-1" eType="#//SafetyCritical"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementationDetail">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="moduleClassRelations" upperBound="-1"
+        eType="#//ModuleClassRelation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classTestCaseRelations"
+        upperBound="-1" eType="#//ClassTestCaseRelation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModuleClassRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//ArchitecturalElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+        eType="#//ClassDef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassTestCaseRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clazz" eType="#//ClassDef"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testCases" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ORNodeExpression" eSuperTypes="#//FaultTreeNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ANDNodeExpression" eSuperTypes="#//FaultTreeNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LevelA" eSuperTypes="#//CriticalityLevel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LevelB" eSuperTypes="#//CriticalityLevel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LevelC" eSuperTypes="#//CriticalityLevel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LevelD" eSuperTypes="#//CriticalityLevel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SafeState" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Reads" eSuperTypes="#//ArchElementToArchElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Writes" eSuperTypes="#//ArchElementToArchElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Commands" eSuperTypes="#//ArchElementToArchElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Stops" eSuperTypes="#//MonitorToArchitecturalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Starts" eSuperTypes="#//MonitorToArchitecturalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inits" eSuperTypes="#//MonitorToArchitecturalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Restarts" eSuperTypes="#//MonitorToArchitecturalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Monitors" eSuperTypes="#//MonitorToArchitecturalElement"/>
+</ecore:EPackage>
