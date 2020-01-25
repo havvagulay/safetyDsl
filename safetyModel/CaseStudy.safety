@@ -1,0 +1,112 @@
+Hazard View ACCS_Hazard{
+	Elements {
+		hazard displayWrongAltitudeData;
+		
+		safetyRequirement receiveAltitudeDataFromTwoIndependentDevices;
+		safetyRequirement altitudeDataShouldBeInDefinedRange;
+		safetyRequirement oneAltitudeDataCannotBeReceived;
+		safetyRequirement bothAltitudeDataCannotBeReceived;
+		safetyRequirement twoAltitudeDataThresoldCheck;
+		safetyRequirement displayAltitudeDataOnIndependentDevices;
+		
+		consequence aircraftCrash;
+		consequence communicationErrorWithGroundStation;
+		
+		fault lossOfAltitudeDevice1;
+		fault lossOfCommunicationAltitudeDevice1;
+		fault lossOfAltitudeDevice2;
+		fault lossOfCommunicationAltitudeDevice2;
+		fault errorInAltitudeDevice1;
+		fault errorInCommunicationAltitudeDevice1;
+		fault errorInAltitudeDevice2;
+		fault errorInCommunicationAltitudeDevice2;
+		fault altitudeMgr1Fails;
+		fault altitudeMgr2Fails;
+		fault navMgrFails;
+		fault errorInDisplayDevice1;
+		fault errorInDisplayDevice2;
+		fault graphicsMgr1Fails;
+		fault graphicsMgr2Fails;
+		
+		faultTree wrongAltitudeData (
+			((lossOfAltitudeDevice1 OR lossOfCommunicationAltitudeDevice1 OR altitudeMgr1Fails)
+			AND (errorInAltitudeDevice2 OR errorInCommunicationAltitudeDevice2)) OR
+			((lossOfAltitudeDevice2 OR lossOfCommunicationAltitudeDevice2 OR altitudeMgr2Fails)
+			AND (errorInAltitudeDevice1 OR errorInCommunicationAltitudeDevice1)) OR
+			((errorInAltitudeDevice1 OR errorInCommunicationAltitudeDevice1)
+			AND (errorInAltitudeDevice2 OR errorInCommunicationAltitudeDevice2)) OR
+			(errorInDisplayDevice1 OR graphicsMgr2Fails) OR (errorInDisplayDevice2 OR graphicsMgr1Fails)
+			OR navMgrFails
+		);
+	}
+	Relations {
+		receiveAltitudeDataFromTwoIndependentDevices,
+		altitudeDataShouldBeInDefinedRange,
+		oneAltitudeDataCannotBeReceived,
+		bothAltitudeDataCannotBeReceived,
+		twoAltitudeDataThresoldCheck,
+		displayAltitudeDataOnIndependentDevices derivedFrom displayWrongAltitudeData;
+		
+		displayWrongAltitudeData causedBy wrongAltitudeData;
+	}
+}
+
+SafetyTacticView ACCS_SafetyTactics{
+	faultTolerance redundantAltitudeData{
+		type="Redundancy"
+		toleratedFaults= lossOfAltitudeDevice1, lossOfAltitudeDevice2, lossOfCommunicationAltitudeDevice1,
+			lossOfCommunicationAltitudeDevice2, errorInAltitudeDevice1, errorInAltitudeDevice2,
+			errorInCommunicationAltitudeDevice1, errorInCommunicationAltitudeDevice2
+	};
+	
+	faultTolerance altitudeDataWarning{
+		type="Warning"
+		toleratedFaults= lossOfAltitudeDevice1, lossOfAltitudeDevice2, lossOfCommunicationAltitudeDevice1,
+			lossOfCommunicationAltitudeDevice2, errorInAltitudeDevice1, errorInAltitudeDevice2,
+			errorInCommunicationAltitudeDevice1, errorInCommunicationAltitudeDevice2
+		
+	};
+	
+	faultTolerance recoverNavigation{
+		type="Recovery"
+		toleratedFaults= altitudeMgr1Fails, altitudeMgr2Fails, navMgrFails
+	};
+	
+	faultDetection altitudeDiffCheck{
+		type="Comparison"
+		detectedFaults= errorInAltitudeDevice1, errorInCommunicationAltitudeDevice1,
+			errorInAltitudeDevice2, errorInCommunicationAltitudeDevice2
+	};
+	
+	faultDetection altitudeRangeCheck{
+		type="Comparison"
+		detectedFaults= errorInAltitudeDevice1, errorInCommunicationAltitudeDevice1,
+			errorInAltitudeDevice2, errorInCommunicationAltitudeDevice2
+	};
+	
+	faultDetection healthCheckForNavigation{
+		type="Monitoring"
+		detectedFaults= altitudeMgr1Fails, altitudeMgr2Fails, navMgrFails
+	};
+	
+	faultTolerance redundantDisplays{
+		type="Redundancy"
+		toleratedFaults= graphicsMgr1Fails, graphicsMgr2Fails
+	};
+	
+	faultTolerance recoverGraphics{
+		type="Recovery"
+		toleratedFaults= errorInDisplayDevice1, errorInDisplayDevice2
+	};
+	
+	faultDetection healthCheckForGraphics{
+		type="Monitoring"
+		detectedFaults= graphicsMgr1Fails, graphicsMgr2Fails
+	};
+}
+
+Safety-CriticalView { 
+	Elements {
+		
+	}
+}
