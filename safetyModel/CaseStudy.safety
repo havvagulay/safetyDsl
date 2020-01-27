@@ -52,24 +52,23 @@ Hazard View ACCS_Hazard{
 }
 
 SafetyTacticView ACCS_SafetyTactics{
-	faultTolerance redundantAltitudeData{
-		type="Redundancy"
-		toleratedFaults= lossOfAltitudeDevice1, lossOfAltitudeDevice2, lossOfCommunicationAltitudeDevice1,
+	faultContainment redundantAltitudeData{
+		type="DiverseRedundancy"
+		containedFaults= lossOfAltitudeDevice1, lossOfAltitudeDevice2, lossOfCommunicationAltitudeDevice1,
 			lossOfCommunicationAltitudeDevice2, errorInAltitudeDevice1, errorInAltitudeDevice2,
 			errorInCommunicationAltitudeDevice1, errorInCommunicationAltitudeDevice2
 	};
 	
-	faultTolerance altitudeDataWarning{
+	faultContainment altitudeDataWarning{
 		type="Warning"
-		toleratedFaults= lossOfAltitudeDevice1, lossOfAltitudeDevice2, lossOfCommunicationAltitudeDevice1,
+		containedFaults= lossOfAltitudeDevice1, lossOfAltitudeDevice2, lossOfCommunicationAltitudeDevice1,
 			lossOfCommunicationAltitudeDevice2, errorInAltitudeDevice1, errorInAltitudeDevice2,
 			errorInCommunicationAltitudeDevice1, errorInCommunicationAltitudeDevice2
-		
 	};
 	
-	faultTolerance recoverNavigation{
+	faultContainment recoverNavigation{
 		type="Recovery"
-		toleratedFaults= altitudeMgr1Fails, altitudeMgr2Fails, navMgrFails
+		containedFaults= altitudeMgr1Fails, altitudeMgr2Fails, navMgrFails
 	};
 	
 	faultDetection altitudeDiffCheck{
@@ -79,28 +78,28 @@ SafetyTacticView ACCS_SafetyTactics{
 	};
 	
 	faultDetection altitudeRangeCheck{
-		type="Comparison"
+		type="SanityCheck"
 		detectedFaults= errorInAltitudeDevice1, errorInCommunicationAltitudeDevice1,
 			errorInAltitudeDevice2, errorInCommunicationAltitudeDevice2
 	};
 	
 	faultDetection healthCheckForNavigation{
-		type="Monitoring"
+		type="ConditionMonitoring"
 		detectedFaults= altitudeMgr1Fails, altitudeMgr2Fails, navMgrFails
 	};
 	
-	faultTolerance redundantDisplays{
-		type="Redundancy"
-		toleratedFaults= graphicsMgr1Fails, graphicsMgr2Fails
+	faultContainment redundantDisplays{
+		type="ReplicationRedundancy"
+		containedFaults= graphicsMgr1Fails, graphicsMgr2Fails
 	};
 	
-	faultTolerance recoverGraphics{
+	faultContainment recoverGraphics{
 		type="Recovery"
-		toleratedFaults= errorInDisplayDevice1, errorInDisplayDevice2
+		containedFaults= errorInDisplayDevice1, errorInDisplayDevice2
 	};
 	
 	faultDetection healthCheckForGraphics{
-		type="Monitoring"
+		type="ConditionMonitoring"
 		detectedFaults= graphicsMgr1Fails, graphicsMgr2Fails
 	};
 }

@@ -75,7 +75,7 @@ SafetyTacticViewpoint:
 	'}'	
 ;
 SafetyTactic:
-	FaultTolerance | FaultAvoidance | FaultDetection
+	FaultContainment | FaultAvoidance | FaultDetection
 ;
 
 QualifiedName:
@@ -89,8 +89,8 @@ FaultDetection:
 	'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
 ;
 
-FaultTolerance:
-	'faultTolerance' name=ID '{' 'type=' type=STRING 'toleratedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+FaultContainment:
+	'faultContainment' name=ID '{' 'type=' type=STRING 'containedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
 ;
 
 SafetyCriticalViewpoint:
