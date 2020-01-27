@@ -77,8 +77,8 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		public class «'MutantGenerationForTactic_' + tactic.name + '_ForModule_' + module.name» {
 			public static void main(String[] args) {
 				String[] file_list =  new String[]{ «FOR clazz: modulesAndClasses.get(module) SEPARATOR ','» "«clazz.name».java" «ENDFOR» };
-				String[] class_ops = new String[]{""}; 
-				String[] traditional_ops = new String[]{"AORB", "ROR", "COR"};
+				String[] class_ops = new String[]{<<PLACEHOLDER>>}; 
+				String[] traditional_ops = new String[]{<<PLACEHOLDER>>};
 				MutantGeneratorMain.generateMutants(file_list, class_ops, traditional_ops);
 				
 			}
@@ -281,11 +281,6 @@ class SafetyDSLGenerator extends AbstractGenerator {
 				classesAndTestCases.put(relation.clazz, relation.testCases);
 				
 		}
-			System.out.println("===Faults & Modules===")
-			for(Map.Entry<ArchitecturalElement,EList<ClassDef>> element : modulesAndClasses.entrySet()){
-				for(t : element.value)
-					System.out.println("module: " + element.key.name + " class: " + t.name);
-			}
 	}
 	
 

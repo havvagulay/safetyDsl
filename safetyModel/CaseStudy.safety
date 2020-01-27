@@ -105,8 +105,83 @@ SafetyTacticView ACCS_SafetyTactics{
 	};
 }
 
-Safety-CriticalView { 
+Safety-CriticalView ACCS_Safety_Critical{ 
 	Elements {
+		monitor graphicsMonitor {implementedTactics= healthCheckForGraphics, recoverGraphics};
+		monitor managerMonitor {implementedTactics= healthCheckForNavigation, recoverNavigation};
 		
+		safety-critical altitude1Mgr{
+			criticalityLevel=B;
+			implementedSafetyRequirements= receiveAltitudeDataFromTwoIndependentDevices;
+			implementedTactics= redundantAltitudeData, altitudeRangeCheck;
+		};
+		
+		safety-critical altitude2Mgr{
+			criticalityLevel=B;
+			implementedSafetyRequirements= receiveAltitudeDataFromTwoIndependentDevices;
+			implementedTactics= redundantAltitudeData, altitudeRangeCheck;
+		};
+		
+		safety-critical navigationManager {
+			criticalityLevel=B;
+			implementedSafetyRequirements=bothAltitudeDataCannotBeReceived, twoAltitudeDataThresoldCheck, 
+				oneAltitudeDataCannotBeReceived, receiveAltitudeDataFromTwoIndependentDevices;
+			implementedTactics=redundantAltitudeData, altitudeDiffCheck, altitudeDataWarning;
+		};
+		
+		safety-critical graphics1Manager {
+			criticalityLevel=D;
+			implementedSafetyRequirements=displayAltitudeDataOnIndependentDevices;
+			implementedTactics=altitudeDataWarning, redundantDisplays;
+		};
+		
+		safety-critical graphics2Manager {
+			criticalityLevel=D;
+			implementedSafetyRequirements=displayAltitudeDataOnIndependentDevices;
+			implementedTactics=altitudeDataWarning, redundantDisplays;
+		};
 	}
+	Relations {
+		graphicsMonitor monitors graphics1Manager, graphics2Manager;
+		graphicsMonitor stops graphics1Manager, graphics2Manager;
+		graphicsMonitor starts graphics1Manager, graphics2Manager;
+		graphicsMonitor inits graphics1Manager, graphics2Manager;
+		
+		managerMonitor monitors navigationManager, altitude1Mgr, altitude2Mgr;
+		managerMonitor starts navigationManager, altitude1Mgr, altitude2Mgr;
+		managerMonitor stops navigationManager, altitude1Mgr, altitude2Mgr;
+		managerMonitor inits navigationManager, altitude1Mgr, altitude2Mgr;
+		
+		navigationManager commands graphics1Manager, graphics2Manager;
+		navigationManager reads altitude1Mgr, altitude2Mgr;
+		graphics1Manager reads navigationManager;
+		graphics2Manager reads navigationManager;
+		altitude1Mgr reportsFault navigationManager;
+		altitude1Mgr reportsFault navigationManager;
+	}
+}
+
+ImplementationRelations {
+	Module-Class Relations{
+		navigationManager composesOf = { NavigationMgr };
+		altitude1Mgr composesOf = {Altitude, M1553ProtocolAltitude, Altitude1Mgr };
+		altitude2Mgr composesOf = {Altitude, A429ProtocolAltitude, Altitude2Mgr };
+		graphics1Manager composesOf = {GraphicsMgr};
+		graphics2Manager composesOf = {GraphicsMgr};
+		graphicsMonitor composesOf = {GraphicsMonitor};
+		managerMonitor composesOf = {ManagerMonitor};
+	};
+	
+	
+	Class-Test Case Relations{
+		Altitude testWith = {TestAltitude};
+		A429ProtocolAltitude testWith = {TestA429ProtocolAltitude};
+		M1553ProtocolAltitude testWith = {TestM1553ProtocolAltitude};
+		Altitude1Mgr testWith = {TestAltitude1Mgr};
+		Altitude2Mgr testWith = {TestAltitude2Mgr};
+		NavigationMgr testWith = {TestNavigationMgr};
+		GraphicsMgr testWith = {TestGraphicsMgr};
+		GraphicsMonitor testWith = {TestGraphicsMonitior};
+		ManagerMonitor testWith = {TestManagerMonitor};
+	};
 }
