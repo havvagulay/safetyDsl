@@ -20,6 +20,7 @@ import nl.wur.inf.safetyDSL.SafetyTacticViewpoint
 import nl.wur.inf.safetyDSL.SafetyCriticalViewpoint
 import nl.wur.inf.safetyDSL.SafetyCritical
 import nl.wur.inf.safetyDSL.Monitor
+import nl.wur.inf.safetyDSL.SafetyRequirement
 
 /**
  * Generates code from your model files on save.
@@ -30,6 +31,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 
 	HashMap<SafetyTactic, ArrayList<Fault>> tacticsAndFaults;
 	HashMap<SafetyTactic, ArrayList<ArchitecturalElement>> tacticsAndModules;
+	HashMap<SafetyRequirement, ArrayList<ArchitecturalElement>> SRsAndModules;
 	HashMap<ArchitecturalElement, EList<ClassDef>> modulesAndClasses;
 	HashMap<ClassDef, EList<String>> classesAndTestCases;
 	
@@ -37,6 +39,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 	override doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		tacticsAndFaults = new HashMap<SafetyTactic, ArrayList<Fault>>();
 		tacticsAndModules = new HashMap<SafetyTactic, ArrayList<ArchitecturalElement>>();
+		SRsAndModules = new HashMap<SafetyRequirement, ArrayList<ArchitecturalElement>> ();
 		
 		modulesAndClasses = new HashMap<ArchitecturalElement, EList<ClassDef>>();
 		classesAndTestCases = new HashMap<ClassDef, EList<String>>();
@@ -49,9 +52,12 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		var tactics = tacticsAndModules.keySet
 		for(tactic : tactics){
 			for(module : (tacticsAndModules.get(tactic))){
-				fsa.generateFile('MutantGenerationForTactic_' + tactic.name + '_ForModule_' + module.name + '.java', generateMutants(tactic, module));
+				
+				fsa.generateFile('MG-TCR-ForTactic_' + tactic.name + '_ForModule_' + module.name + '.py', generatePython(tactic, module));
+				
+				//fsa.generateFile('MutantGenerationForTactic_' + tactic.name + '_ForModule_' + module.name + '.java', generateMutants(tactic, module));
 			
-				fsa.generateFile('TestCaseRunForTactic_'+ tactic.name + '_ForModule_' + module.name + '.java', testCaseRun(tactic, module));
+				//fsa.generateFile('TestCaseRunForTactic_'+ tactic.name + '_ForModule_' + module.name + '.java', testCaseRun(tactic, module));
 			
 			}
 			
@@ -84,6 +90,11 @@ class SafetyDSLGenerator extends AbstractGenerator {
 			}
 		}
 	'''
+	
+	def generatePython(SafetyTactic tactic,ArchitecturalElement module)'''
+	    mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o <<placeholder>> --report-html Report_T-«tactic.name»_M-«module.name»
+	'''
+	
 	def testCaseRun(SafetyTactic tactic, ArchitecturalElement module) '''
 		import java.io.File;
 		import java.util.ArrayList;
@@ -325,6 +336,32 @@ class SafetyDSLGenerator extends AbstractGenerator {
 
 		
 	}
+	
+	/*def getAllModulesAndSRs(Resource rs) {
+		
+			for(e: rs.allContents.filter(typeof(SafetyCriticalViewpoint)).toIterable) {
+				for(element : e.elements) {
+					if(element instanceof SafetyCritical){
+						for(sr : (element as SafetyCritical).getImplementedSafetyRequirements()){
+							if(!SRsAndModules.containsKey(sr)){
+								SRsAndModules.put(sr, new ArrayList<ArchitecturalElement>);	
+							}
+							SRsAndModules.get(sr).add(element as SafetyCritical);						
+						}
+					}
+					else if(element instanceof Monitor){
+						for(sr : (element as Monitor).getImplementedSafetyRequirements()){
+							if(!SRsAndModules.containsKey(sr)){
+								SRsAndModules.put(sr, new ArrayList<ArchitecturalElement>);	
+							}
+							SRsAndModules.get(sr).add(element as Monitor);	
+						}
+					}
+				}
+			}
+
+		
+	}*/
 	
 	
 
