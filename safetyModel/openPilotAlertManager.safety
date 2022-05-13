@@ -1,0 +1,152 @@
+Hazard View Openpilot_HazardView{
+	Elements {
+		hazard displayingAnIncorrectAlertToUser;
+		
+		safetyRequirement evaluateEventsWithTwoComponents;
+		safetyRequirement oneEventCannotBeProduced;
+		safetyRequirement bothEventsCannotBeProduced;
+		safetyRequirement twoEventsAreDifferent;
+		safetyRequirement doNotDisplayNonAlertEvents;
+		safetyRequirement showHighPriAndMostRecentAlert;
+		safetyRequirement doNotShowExpiredAlerts;
+		
+		consequence carAccident;
+		
+		fault lossOfCarSensor;
+		fault errorInCarSensor;
+		fault lossOfCarSensorCommunication;
+		fault errorInCarSensorCommunication;
+		fault errorInDisplayDevice;
+		fault errorInDataEvaluation;
+		fault alertManager1Fails;
+		fault alertManager2Fails;
+		
+		
+		faultTree incorrectAlert (
+			lossOfCarSensor OR errorInCarSensor OR lossOfCarSensorCommunication OR errorInCarSensorCommunication
+			OR errorInDisplayDevice OR errorInDataEvaluation
+		);
+		
+	}
+	Relations {
+		doNotDisplayNonAlertEvents,
+		showHighPriAndMostRecentAlert,
+		doNotShowExpiredAlerts derivedFrom displayingAnIncorrectAlertToUser;
+		
+		displayingAnIncorrectAlertToUser causedBy incorrectAlert;
+	}
+}
+
+SafetyTacticView Openpilot_SafetyTactics{
+	faultContainment alertManagerReplica{
+		type="ReplicationRedundancy"
+		containedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultDetection healthCheckForAlertManager{
+		type="ConditionMonitoring"
+		detectedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultContainment alertManagerVoting{
+		type="Voting"
+		containedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultDetection compareAlerts{
+		type="Comparison"
+		detectedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultContainment alertManagerSelectAlert{
+		type="Override"
+		containedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultDetection eventTypeCheck{
+		type="SanityCheck"
+		detectedFaults= errorInCarSensor, errorInCarSensorCommunication
+	};
+	
+	faultDetection checkAlertStates{
+		type="ConditionMonitoring"
+		detectedFaults= errorInCarSensor, errorInCarSensorCommunication
+	};
+	
+	faultDetection compareAlertsTimeAndPriority{
+		type="Comparison"
+		detectedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultDetection checkIfAlertIsActive{
+		type="SanityCheck"
+		detectedFaults= errorInCarSensor, errorInCarSensorCommunication
+	};
+	
+	faultContainment recoverAlertManager{
+		type="Recovery"
+		containedFaults= alertManager1Fails, alertManager2Fails
+	};
+	
+	faultDetection healthCheckForAlertManager{
+		type="ConditionMonitoring"
+		detectedFaults= alertManager1Fails, alertManager2Fails
+	};
+}
+Safety-CriticalView Openpilot_Safety_Critical{ 
+	Elements {
+		monitor alertManagerMonitor {
+			implementedTactics= healthCheckForAlertManager, recoverAlertManager
+		};
+		
+		safety-critical alertManager1{
+			criticalityLevel=B;
+			implementedSafetyRequirements= showHighPriAndMostRecentAlert, evaluateEventsWithTwoComponents;
+			implementedTactics= checkAlertStates, compareAlertsTimeAndPriority, alertManagerReplica;
+		};
+		
+		safety-critical alertManager2{
+			criticalityLevel=B;
+			implementedSafetyRequirements= showHighPriAndMostRecentAlert, evaluateEventsWithTwoComponents;
+			implementedTactics= checkAlertStates, compareAlertsTimeAndPriority, alertManagerReplica;
+		};
+		safety-critical controlsd{
+			criticalityLevel=B;
+			implementedSafetyRequirements= doNotShowExpiredAlerts, oneEventCannotBeProduced, bothEventsCannotBeProduced, twoEventsAreDifferent;
+			implementedTactics=checkIfAlertIsActive, alertManagerSelectAlert, compareAlerts, alertManagerVoting;
+		};
+		safety-critical events{
+			criticalityLevel=B;
+			implementedSafetyRequirements= doNotDisplayNonAlertEvents;
+			implementedTactics=eventTypeCheck;
+		};
+	}
+	Relations {
+		alertManagerMonitor monitors alertManager1, alertManager2;
+		alertManagerMonitor stops alertManager1, alertManager2;
+		alertManagerMonitor starts alertManager1, alertManager2;
+		alertManagerMonitor inits alertManager1, alertManager2;
+		
+		controlsd reads alertManager1, alertManager2;
+		controlsd commands alertManager1, alertManager2;
+		alertManager1 reportsFault controlsd;
+		alertManager2 reportsFault controlsd;
+	}
+}
+
+ImplementationRelations {
+	Module-Class Relations{
+		alertManagerMonitor composesOf = { alertmanagermonitor };
+		alertManager1 composesOf = { alertmanager };
+		alertManager2 composesOf = { alertmanager2 };
+		events composesOf = {events};
+		controlsd composesOf = { controlsd };
+	};
+	Class-Test Case Relations{ 
+		alertmanagermonitor testWith = { selfdrive.controls.lib.tests.test_alertmanagermonitor };
+		alertmanager testWith = { selfdrive.controls.tests.test_alerts, selfdrive.controls.tests.test_state_machine, selfdrive.controls.lib.tests.test_alertmanager };
+		events testWith = { selfdrive.controls.lib.tests.test_alertmanager };
+		controlsd testWith = { selfdrive.controls.tests.test_state_machine };
+	};
+	
+}
