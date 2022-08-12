@@ -22,6 +22,7 @@ import nl.wur.inf.safetyDSL.SafetyCritical
 import nl.wur.inf.safetyDSL.Monitor
 import nl.wur.inf.safetyDSL.SafetyRequirement
 
+
 /**
  * Generates code from your model files on save.
  * 
@@ -53,13 +54,18 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		for(tactic : tactics){
 			for(module : (tacticsAndModules.get(tactic))){
 				
-				fsa.generateFile('MG-TCR-ForTactic_' + tactic.name + '_ForModule_' + module.name + '.py', generatePython(tactic, module));
+				if(tactic.type.equalsIgnoreCase("SanityCheck") ||
+					tactic.type.equalsIgnoreCase("ConditionMonitoring") || 
+					tactic.type.equalsIgnoreCase("Comparison"))
+				{
+					fsa.generateFile('MG-TCR-ForTactic_' + tactic.name + '_ForModule_' + module.name + '.py', generateMutantsPythonSupport(tactic, module));
 				
-				//fsa.generateFile('MutantGenerationForTactic_' + tactic.name + '_ForModule_' + module.name + '.java', generateMutants(tactic, module));
-			
-				//fsa.generateFile('TestCaseRunForTactic_'+ tactic.name + '_ForModule_' + module.name + '.java', testCaseRun(tactic, module));
-			
-			
+					//fsa.generateFile('MutantGenerationForTactic_' + tactic.name + '_ForModule_' + module.name + '.java', generateMutants(tactic, module));
+					//fsa.generateFile('TestCaseRunForTactic_'+ tactic.name + '_ForModule_' + module.name + '.java', testCaseRun(tactic, module));
+				}
+				else{
+					// do nothing - manual mutation is applied
+				}
 			}
 			
 		}
@@ -92,8 +98,38 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		}
 	'''
 	
-	def generatePython(SafetyTactic tactic,ArchitecturalElement module)'''
-	    mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o <<placeholder>> --report-html Report_T-«tactic.name»_M-«module.name»
+	def generateMutantsPythonSupport(SafetyTactic tactic,ArchitecturalElement module){
+		var arithmeticOperators = "AOD AOR";
+		var relationalOperators = "ROR";
+		var logicalOperators = "LOR LOD";
+	
+		if(tactic.type.equalsIgnoreCase("SanityCheck"))
+		{
+			var operators = arithmeticOperators + " " + relationalOperators + " " + logicalOperators;
+			return generatePython(tactic, module, operators);
+		}
+		else if(tactic.type.equalsIgnoreCase("ConditionMonitoring"))
+		{
+			var operators = arithmeticOperators + " " + relationalOperators + " " + logicalOperators;
+			return generatePython(tactic, module, operators);
+		} 
+		else if(tactic.type.equalsIgnoreCase("Comparison"))
+		{
+			var operators = relationalOperators + " " + logicalOperators;
+			return generatePython(tactic, module, operators);
+		}
+		else
+		{
+			return manualMutationProcess();
+		}
+	}
+	
+	def manualMutationProcess()'''
+		# apply mutation manually
+	'''
+	
+	def generatePython(SafetyTactic tactic,ArchitecturalElement module, String operators)'''
+	    mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o «operators» --report-html Report_T-«tactic.name»_M-«module.name»
 	'''
 	
 	def testCaseRun(SafetyTactic tactic, ArchitecturalElement module) '''
