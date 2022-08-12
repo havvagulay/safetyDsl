@@ -58,6 +58,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 					tactic.type.equalsIgnoreCase("ConditionMonitoring") || 
 					tactic.type.equalsIgnoreCase("Comparison"))
 				{
+					// mutation generation
 					fsa.generateFile('MG-TCR-ForTactic_' + tactic.name + '_ForModule_' + module.name + '.py', generateMutantsPythonSupport(tactic, module));
 				
 					//fsa.generateFile('MutantGenerationForTactic_' + tactic.name + '_ForModule_' + module.name + '.java', generateMutants(tactic, module));
