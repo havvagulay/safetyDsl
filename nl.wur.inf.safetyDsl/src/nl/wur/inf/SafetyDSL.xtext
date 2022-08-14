@@ -82,15 +82,15 @@ QualifiedName:
 ID ('.' ID)*;
 
 FaultAvoidance:
-	'faultAvoidance' name=ID '{' 'type=' type=STRING 'avoidedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+	'faultAvoidance' name=ID '{' 'type=' type=STRING 'avoidedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])*  'satisfiedRequirements=' (safetyReqs+=[SafetyRequirement])  (',' safetyReqs += [SafetyRequirement])*  '}' ';'
 ;
 
 FaultDetection:
-	'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+	'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* 'satisfiedRequirements=' (safetyReqs+=[SafetyRequirement])  (',' safetyReqs += [SafetyRequirement])*  '}' ';'
 ;
 
 FaultContainment:
-	'faultContainment' name=ID '{' 'type=' type=STRING 'containedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* '}' ';'
+	'faultContainment' name=ID '{' 'type=' type=STRING 'containedFaults=' (handledFaults+=[Fault|QualifiedName])  (',' handledFaults += [Fault|QualifiedName])* 'satisfiedRequirements=' (safetyReqs+=[SafetyRequirement])  (',' safetyReqs += [SafetyRequirement])*  '}' ';'
 ;
 
 SafetyCriticalViewpoint:

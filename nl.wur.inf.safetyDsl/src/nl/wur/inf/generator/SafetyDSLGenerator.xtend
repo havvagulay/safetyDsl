@@ -33,6 +33,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 	HashMap<SafetyTactic, ArrayList<Fault>> tacticsAndFaults;
 	HashMap<SafetyTactic, ArrayList<ArchitecturalElement>> tacticsAndModules;
 	HashMap<SafetyRequirement, ArrayList<ArchitecturalElement>> SRsAndModules;
+	HashMap<SafetyRequirement, ArrayList<SafetyTactic>> SRsAndTactics;
 	HashMap<ArchitecturalElement, EList<ClassDef>> modulesAndClasses;
 	HashMap<ClassDef, EList<String>> classesAndTestCases;
 	
@@ -41,6 +42,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		tacticsAndFaults = new HashMap<SafetyTactic, ArrayList<Fault>>();
 		tacticsAndModules = new HashMap<SafetyTactic, ArrayList<ArchitecturalElement>>();
 		SRsAndModules = new HashMap<SafetyRequirement, ArrayList<ArchitecturalElement>> ();
+		SRsAndTactics = new HashMap<SafetyRequirement, ArrayList<SafetyTactic>> ();
 		
 		modulesAndClasses = new HashMap<ArchitecturalElement, EList<ClassDef>>();
 		classesAndTestCases = new HashMap<ClassDef, EList<String>>();
@@ -50,7 +52,34 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		
 		fsa.generateFile('ViewpointInformation.java', generateViewInformation());
 		
-		var tactics = tacticsAndModules.keySet
+		var safetyRequirements = SRsAndTactics.keySet
+		
+		for(sr: safetyRequirements){
+			var code = new StringBuilder();
+			
+			for(tactic : SRsAndTactics.get(sr)){
+				for(module : (tacticsAndModules.get(tactic))){
+					if(tactic.type.equalsIgnoreCase("SanityCheck") ||
+						tactic.type.equalsIgnoreCase("ConditionMonitoring") || 
+						tactic.type.equalsIgnoreCase("Comparison"))
+					{
+						// mutation generation
+						code.append(generateMutantsPythonSupport(tactic, module));
+						code.append("\r\n");
+									}
+					else{
+						// do nothing - manual mutation is applied
+						code.append("# apply manual mutation for tactic '" + tactic.name + "' module: '" + module.name + "'" );
+						code.append("\r\n");
+					}
+				}
+			}
+			
+			fsa.generateFile('MG-TCR-ForSR_' + sr.name + '.py', code.toString());
+		}
+		
+		
+		/* var tactics = tacticsAndModules.keySet
 		for(tactic : tactics){
 			for(module : (tacticsAndModules.get(tactic))){
 				
@@ -69,11 +98,13 @@ class SafetyDSLGenerator extends AbstractGenerator {
 				}
 			}
 			
-		}
+		}*/
 	}
 
 	
 	def compile(Resource rs)'''
+	    ... safety requirements and tactics are collecting
+	    «getAllSRAndTactics(rs)»
 		....faults and tactics are collecting
 		«getAllFaultsAndTactics(rs)»
 		completed
@@ -335,22 +366,44 @@ class SafetyDSLGenerator extends AbstractGenerator {
 
 
 	def getAllFaultsAndTactics(Resource resource) {
-			for(e: resource.allContents.filter(typeof(SafetyTacticViewpoint)).toIterable) {
-				for(tactic : e.safetyTactics ) {
-					tacticsAndFaults.put(tactic, new ArrayList<Fault>);
-					for(fault : tactic.handledFaults){
-						tacticsAndFaults.get(tactic).add(fault);
-					}
-					
+		for(e: resource.allContents.filter(typeof(SafetyTacticViewpoint)).toIterable) {
+			for(tactic : e.safetyTactics ) {
+				tacticsAndFaults.put(tactic, new ArrayList<Fault>);
+				for(fault : tactic.handledFaults){
+					tacticsAndFaults.get(tactic).add(fault);
 				}
+					
 			}
-
-
 		}
+	}
 	
+	def getAllSRAndTactics(Resource resource){
+		for(tactic: resource.allContents.filter(typeof(SafetyTactic)).toIterable) {
+			for(safetyReq : tactic.safetyReqs ) {
+				if(!SRsAndTactics.containsKey(safetyReq)){
+					SRsAndTactics.put(safetyReq, new ArrayList<SafetyTactic>);	
+				}
+				SRsAndTactics.get(safetyReq).add(tactic);
+			}
+		}
+		
+		var all = new StringBuilder();
+		var keys = SRsAndTactics.keySet
+		for(key: keys){
+			all.append("Requirement: ")
+			all.append(key.name)
+			all.append(" Tactics: ")
+			for(tactic: SRsAndTactics.get(key)){
+				all.append(tactic.name + ' ')
+			}
+			all.append("\r\n")
+		}
+		
+		return all.toString()
+		
+	}
 	
 	def getAllModulesAndTactics(Resource rs) {
-		
 			for(e: rs.allContents.filter(typeof(SafetyCriticalViewpoint)).toIterable) {
 				for(element : e.elements) {
 					if(element instanceof SafetyCritical){

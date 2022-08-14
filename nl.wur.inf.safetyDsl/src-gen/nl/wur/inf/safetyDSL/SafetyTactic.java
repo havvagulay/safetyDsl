@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link nl.wur.inf.safetyDSL.SafetyTactic#getName <em>Name</em>}</li>
  *   <li>{@link nl.wur.inf.safetyDSL.SafetyTactic#getType <em>Type</em>}</li>
  *   <li>{@link nl.wur.inf.safetyDSL.SafetyTactic#getHandledFaults <em>Handled Faults</em>}</li>
+ *   <li>{@link nl.wur.inf.safetyDSL.SafetyTactic#getSafetyReqs <em>Safety Reqs</em>}</li>
  * </ul>
  *
  * @see nl.wur.inf.safetyDSL.SafetyDSLPackage#getSafetyTactic()
@@ -82,5 +83,17 @@ public interface SafetyTactic extends EObject
    * @generated
    */
   EList<Fault> getHandledFaults();
+
+  /**
+   * Returns the value of the '<em><b>Safety Reqs</b></em>' reference list.
+   * The list contents are of type {@link nl.wur.inf.safetyDSL.SafetyRequirement}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Safety Reqs</em>' reference list.
+   * @see nl.wur.inf.safetyDSL.SafetyDSLPackage#getSafetyTactic_SafetyReqs()
+   * @model
+   * @generated
+   */
+  EList<SafetyRequirement> getSafetyReqs();
 
 } // SafetyTactic

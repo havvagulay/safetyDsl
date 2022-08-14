@@ -60,6 +60,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="handledFaults" unique="false"
         upperBound="-1" eType="#//Fault"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="safetyReqs" unique="false"
+        upperBound="-1" eType="#//SafetyRequirement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FaultAvoidance" eSuperTypes="#//SafetyTactic"/>
   <eClassifiers xsi:type="ecore:EClass" name="FaultDetection" eSuperTypes="#//SafetyTactic"/>

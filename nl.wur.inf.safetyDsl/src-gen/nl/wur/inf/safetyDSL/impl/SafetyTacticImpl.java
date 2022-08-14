@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import nl.wur.inf.safetyDSL.Fault;
 import nl.wur.inf.safetyDSL.SafetyDSLPackage;
+import nl.wur.inf.safetyDSL.SafetyRequirement;
 import nl.wur.inf.safetyDSL.SafetyTactic;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link nl.wur.inf.safetyDSL.impl.SafetyTacticImpl#getName <em>Name</em>}</li>
  *   <li>{@link nl.wur.inf.safetyDSL.impl.SafetyTacticImpl#getType <em>Type</em>}</li>
  *   <li>{@link nl.wur.inf.safetyDSL.impl.SafetyTacticImpl#getHandledFaults <em>Handled Faults</em>}</li>
+ *   <li>{@link nl.wur.inf.safetyDSL.impl.SafetyTacticImpl#getSafetyReqs <em>Safety Reqs</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,6 +88,16 @@ public class SafetyTacticImpl extends MinimalEObjectImpl.Container implements Sa
    * @ordered
    */
   protected EList<Fault> handledFaults;
+
+  /**
+   * The cached value of the '{@link #getSafetyReqs() <em>Safety Reqs</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSafetyReqs()
+   * @generated
+   * @ordered
+   */
+  protected EList<SafetyRequirement> safetyReqs;
 
   /**
    * <!-- begin-user-doc -->
@@ -179,6 +191,21 @@ public class SafetyTacticImpl extends MinimalEObjectImpl.Container implements Sa
    * @generated
    */
   @Override
+  public EList<SafetyRequirement> getSafetyReqs()
+  {
+    if (safetyReqs == null)
+    {
+      safetyReqs = new EObjectResolvingEList<SafetyRequirement>(SafetyRequirement.class, this, SafetyDSLPackage.SAFETY_TACTIC__SAFETY_REQS);
+    }
+    return safetyReqs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -189,6 +216,8 @@ public class SafetyTacticImpl extends MinimalEObjectImpl.Container implements Sa
         return getType();
       case SafetyDSLPackage.SAFETY_TACTIC__HANDLED_FAULTS:
         return getHandledFaults();
+      case SafetyDSLPackage.SAFETY_TACTIC__SAFETY_REQS:
+        return getSafetyReqs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -214,6 +243,10 @@ public class SafetyTacticImpl extends MinimalEObjectImpl.Container implements Sa
         getHandledFaults().clear();
         getHandledFaults().addAll((Collection<? extends Fault>)newValue);
         return;
+      case SafetyDSLPackage.SAFETY_TACTIC__SAFETY_REQS:
+        getSafetyReqs().clear();
+        getSafetyReqs().addAll((Collection<? extends SafetyRequirement>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -237,6 +270,9 @@ public class SafetyTacticImpl extends MinimalEObjectImpl.Container implements Sa
       case SafetyDSLPackage.SAFETY_TACTIC__HANDLED_FAULTS:
         getHandledFaults().clear();
         return;
+      case SafetyDSLPackage.SAFETY_TACTIC__SAFETY_REQS:
+        getSafetyReqs().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -257,6 +293,8 @@ public class SafetyTacticImpl extends MinimalEObjectImpl.Container implements Sa
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case SafetyDSLPackage.SAFETY_TACTIC__HANDLED_FAULTS:
         return handledFaults != null && !handledFaults.isEmpty();
+      case SafetyDSLPackage.SAFETY_TACTIC__SAFETY_REQS:
+        return safetyReqs != null && !safetyReqs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

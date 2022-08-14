@@ -614,13 +614,22 @@ public interface SafetyDSLPackage extends EPackage
   int SAFETY_TACTIC__HANDLED_FAULTS = 2;
 
   /**
+   * The feature id for the '<em><b>Safety Reqs</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SAFETY_TACTIC__SAFETY_REQS = 3;
+
+  /**
    * The number of structural features of the '<em>Safety Tactic</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SAFETY_TACTIC_FEATURE_COUNT = 3;
+  int SAFETY_TACTIC_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link nl.wur.inf.safetyDSL.impl.FaultAvoidanceImpl <em>Fault Avoidance</em>}' class.
@@ -658,6 +667,15 @@ public interface SafetyDSLPackage extends EPackage
    * @ordered
    */
   int FAULT_AVOIDANCE__HANDLED_FAULTS = SAFETY_TACTIC__HANDLED_FAULTS;
+
+  /**
+   * The feature id for the '<em><b>Safety Reqs</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FAULT_AVOIDANCE__SAFETY_REQS = SAFETY_TACTIC__SAFETY_REQS;
 
   /**
    * The number of structural features of the '<em>Fault Avoidance</em>' class.
@@ -706,6 +724,15 @@ public interface SafetyDSLPackage extends EPackage
   int FAULT_DETECTION__HANDLED_FAULTS = SAFETY_TACTIC__HANDLED_FAULTS;
 
   /**
+   * The feature id for the '<em><b>Safety Reqs</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FAULT_DETECTION__SAFETY_REQS = SAFETY_TACTIC__SAFETY_REQS;
+
+  /**
    * The number of structural features of the '<em>Fault Detection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -750,6 +777,15 @@ public interface SafetyDSLPackage extends EPackage
    * @ordered
    */
   int FAULT_CONTAINMENT__HANDLED_FAULTS = SAFETY_TACTIC__HANDLED_FAULTS;
+
+  /**
+   * The feature id for the '<em><b>Safety Reqs</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FAULT_CONTAINMENT__SAFETY_REQS = SAFETY_TACTIC__SAFETY_REQS;
 
   /**
    * The number of structural features of the '<em>Fault Containment</em>' class.
@@ -2160,6 +2196,17 @@ public interface SafetyDSLPackage extends EPackage
   EReference getSafetyTactic_HandledFaults();
 
   /**
+   * Returns the meta object for the reference list '{@link nl.wur.inf.safetyDSL.SafetyTactic#getSafetyReqs <em>Safety Reqs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Safety Reqs</em>'.
+   * @see nl.wur.inf.safetyDSL.SafetyTactic#getSafetyReqs()
+   * @see #getSafetyTactic()
+   * @generated
+   */
+  EReference getSafetyTactic_SafetyReqs();
+
+  /**
    * Returns the meta object for class '{@link nl.wur.inf.safetyDSL.FaultAvoidance <em>Fault Avoidance</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3087,6 +3134,14 @@ public interface SafetyDSLPackage extends EPackage
      * @generated
      */
     EReference SAFETY_TACTIC__HANDLED_FAULTS = eINSTANCE.getSafetyTactic_HandledFaults();
+
+    /**
+     * The meta object literal for the '<em><b>Safety Reqs</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SAFETY_TACTIC__SAFETY_REQS = eINSTANCE.getSafetyTactic_SafetyReqs();
 
     /**
      * The meta object literal for the '{@link nl.wur.inf.safetyDSL.impl.FaultAvoidanceImpl <em>Fault Avoidance</em>}' class.

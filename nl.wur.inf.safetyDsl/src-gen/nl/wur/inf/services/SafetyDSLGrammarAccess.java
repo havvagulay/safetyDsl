@@ -746,16 +746,27 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cHandledFaultsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final CrossReference cHandledFaultsFaultCrossReference_7_1_0 = (CrossReference)cHandledFaultsAssignment_7_1.eContents().get(0);
 		private final RuleCall cHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1 = (RuleCall)cHandledFaultsFaultCrossReference_7_1_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cSatisfiedRequirementsKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cSafetyReqsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final CrossReference cSafetyReqsSafetyRequirementCrossReference_9_0 = (CrossReference)cSafetyReqsAssignment_9.eContents().get(0);
+		private final RuleCall cSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1 = (RuleCall)cSafetyReqsSafetyRequirementCrossReference_9_0.eContents().get(1);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cCommaKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cSafetyReqsAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final CrossReference cSafetyReqsSafetyRequirementCrossReference_10_1_0 = (CrossReference)cSafetyReqsAssignment_10_1.eContents().get(0);
+		private final RuleCall cSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1 = (RuleCall)cSafetyReqsSafetyRequirementCrossReference_10_1_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cSemicolonKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//FaultAvoidance:
 		//	'faultAvoidance' name=ID '{' 'type=' type=STRING 'avoidedFaults=' handledFaults+=[Fault|QualifiedName] (','
-		//	handledFaults+=[Fault|QualifiedName])* '}' ';';
+		//	handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+		//	safetyReqs+=[SafetyRequirement])* '}' ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'faultAvoidance' name=ID '{' 'type=' type=STRING 'avoidedFaults=' handledFaults+=[Fault|QualifiedName] (','
-		//handledFaults+=[Fault|QualifiedName])* '}' ';'
+		//handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+		//safetyReqs+=[SafetyRequirement])* '}' ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'faultAvoidance'
@@ -806,11 +817,38 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1() { return cHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1; }
 		
+		//'satisfiedRequirements='
+		public Keyword getSatisfiedRequirementsKeyword_8() { return cSatisfiedRequirementsKeyword_8; }
+		
+		//safetyReqs+=[SafetyRequirement]
+		public Assignment getSafetyReqsAssignment_9() { return cSafetyReqsAssignment_9; }
+		
+		//[SafetyRequirement]
+		public CrossReference getSafetyReqsSafetyRequirementCrossReference_9_0() { return cSafetyReqsSafetyRequirementCrossReference_9_0; }
+		
+		//ID
+		public RuleCall getSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1() { return cSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1; }
+		
+		//(',' safetyReqs+=[SafetyRequirement])*
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//','
+		public Keyword getCommaKeyword_10_0() { return cCommaKeyword_10_0; }
+		
+		//safetyReqs+=[SafetyRequirement]
+		public Assignment getSafetyReqsAssignment_10_1() { return cSafetyReqsAssignment_10_1; }
+		
+		//[SafetyRequirement]
+		public CrossReference getSafetyReqsSafetyRequirementCrossReference_10_1_0() { return cSafetyReqsSafetyRequirementCrossReference_10_1_0; }
+		
+		//ID
+		public RuleCall getSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1() { return cSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
+		public Keyword getSemicolonKeyword_12() { return cSemicolonKeyword_12; }
 	}
 	public class FaultDetectionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "nl.wur.inf.SafetyDSL.FaultDetection");
@@ -831,16 +869,27 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cHandledFaultsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final CrossReference cHandledFaultsFaultCrossReference_7_1_0 = (CrossReference)cHandledFaultsAssignment_7_1.eContents().get(0);
 		private final RuleCall cHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1 = (RuleCall)cHandledFaultsFaultCrossReference_7_1_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cSatisfiedRequirementsKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cSafetyReqsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final CrossReference cSafetyReqsSafetyRequirementCrossReference_9_0 = (CrossReference)cSafetyReqsAssignment_9.eContents().get(0);
+		private final RuleCall cSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1 = (RuleCall)cSafetyReqsSafetyRequirementCrossReference_9_0.eContents().get(1);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cCommaKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cSafetyReqsAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final CrossReference cSafetyReqsSafetyRequirementCrossReference_10_1_0 = (CrossReference)cSafetyReqsAssignment_10_1.eContents().get(0);
+		private final RuleCall cSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1 = (RuleCall)cSafetyReqsSafetyRequirementCrossReference_10_1_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cSemicolonKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//FaultDetection:
 		//	'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' handledFaults+=[Fault|QualifiedName] (','
-		//	handledFaults+=[Fault|QualifiedName])* '}' ';';
+		//	handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+		//	safetyReqs+=[SafetyRequirement])* '}' ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' handledFaults+=[Fault|QualifiedName] (','
-		//handledFaults+=[Fault|QualifiedName])* '}' ';'
+		//handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+		//safetyReqs+=[SafetyRequirement])* '}' ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'faultDetection'
@@ -891,11 +940,38 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1() { return cHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1; }
 		
+		//'satisfiedRequirements='
+		public Keyword getSatisfiedRequirementsKeyword_8() { return cSatisfiedRequirementsKeyword_8; }
+		
+		//safetyReqs+=[SafetyRequirement]
+		public Assignment getSafetyReqsAssignment_9() { return cSafetyReqsAssignment_9; }
+		
+		//[SafetyRequirement]
+		public CrossReference getSafetyReqsSafetyRequirementCrossReference_9_0() { return cSafetyReqsSafetyRequirementCrossReference_9_0; }
+		
+		//ID
+		public RuleCall getSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1() { return cSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1; }
+		
+		//(',' safetyReqs+=[SafetyRequirement])*
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//','
+		public Keyword getCommaKeyword_10_0() { return cCommaKeyword_10_0; }
+		
+		//safetyReqs+=[SafetyRequirement]
+		public Assignment getSafetyReqsAssignment_10_1() { return cSafetyReqsAssignment_10_1; }
+		
+		//[SafetyRequirement]
+		public CrossReference getSafetyReqsSafetyRequirementCrossReference_10_1_0() { return cSafetyReqsSafetyRequirementCrossReference_10_1_0; }
+		
+		//ID
+		public RuleCall getSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1() { return cSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
+		public Keyword getSemicolonKeyword_12() { return cSemicolonKeyword_12; }
 	}
 	public class FaultContainmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "nl.wur.inf.SafetyDSL.FaultContainment");
@@ -916,16 +992,27 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cHandledFaultsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final CrossReference cHandledFaultsFaultCrossReference_7_1_0 = (CrossReference)cHandledFaultsAssignment_7_1.eContents().get(0);
 		private final RuleCall cHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1 = (RuleCall)cHandledFaultsFaultCrossReference_7_1_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cSatisfiedRequirementsKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cSafetyReqsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final CrossReference cSafetyReqsSafetyRequirementCrossReference_9_0 = (CrossReference)cSafetyReqsAssignment_9.eContents().get(0);
+		private final RuleCall cSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1 = (RuleCall)cSafetyReqsSafetyRequirementCrossReference_9_0.eContents().get(1);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cCommaKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cSafetyReqsAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final CrossReference cSafetyReqsSafetyRequirementCrossReference_10_1_0 = (CrossReference)cSafetyReqsAssignment_10_1.eContents().get(0);
+		private final RuleCall cSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1 = (RuleCall)cSafetyReqsSafetyRequirementCrossReference_10_1_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cSemicolonKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//FaultContainment:
 		//	'faultContainment' name=ID '{' 'type=' type=STRING 'containedFaults=' handledFaults+=[Fault|QualifiedName] (','
-		//	handledFaults+=[Fault|QualifiedName])* '}' ';';
+		//	handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+		//	safetyReqs+=[SafetyRequirement])* '}' ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'faultContainment' name=ID '{' 'type=' type=STRING 'containedFaults=' handledFaults+=[Fault|QualifiedName] (','
-		//handledFaults+=[Fault|QualifiedName])* '}' ';'
+		//handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+		//safetyReqs+=[SafetyRequirement])* '}' ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'faultContainment'
@@ -976,11 +1063,38 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1() { return cHandledFaultsFaultQualifiedNameParserRuleCall_7_1_0_1; }
 		
+		//'satisfiedRequirements='
+		public Keyword getSatisfiedRequirementsKeyword_8() { return cSatisfiedRequirementsKeyword_8; }
+		
+		//safetyReqs+=[SafetyRequirement]
+		public Assignment getSafetyReqsAssignment_9() { return cSafetyReqsAssignment_9; }
+		
+		//[SafetyRequirement]
+		public CrossReference getSafetyReqsSafetyRequirementCrossReference_9_0() { return cSafetyReqsSafetyRequirementCrossReference_9_0; }
+		
+		//ID
+		public RuleCall getSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1() { return cSafetyReqsSafetyRequirementIDTerminalRuleCall_9_0_1; }
+		
+		//(',' safetyReqs+=[SafetyRequirement])*
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//','
+		public Keyword getCommaKeyword_10_0() { return cCommaKeyword_10_0; }
+		
+		//safetyReqs+=[SafetyRequirement]
+		public Assignment getSafetyReqsAssignment_10_1() { return cSafetyReqsAssignment_10_1; }
+		
+		//[SafetyRequirement]
+		public CrossReference getSafetyReqsSafetyRequirementCrossReference_10_1_0() { return cSafetyReqsSafetyRequirementCrossReference_10_1_0; }
+		
+		//ID
+		public RuleCall getSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1() { return cSafetyReqsSafetyRequirementIDTerminalRuleCall_10_1_0_1; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
+		public Keyword getSemicolonKeyword_12() { return cSemicolonKeyword_12; }
 	}
 	public class SafetyCriticalViewpointElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "nl.wur.inf.SafetyDSL.SafetyCriticalViewpoint");
@@ -2731,7 +2845,8 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//FaultAvoidance:
 	//	'faultAvoidance' name=ID '{' 'type=' type=STRING 'avoidedFaults=' handledFaults+=[Fault|QualifiedName] (','
-	//	handledFaults+=[Fault|QualifiedName])* '}' ';';
+	//	handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+	//	safetyReqs+=[SafetyRequirement])* '}' ';';
 	public FaultAvoidanceElements getFaultAvoidanceAccess() {
 		return pFaultAvoidance;
 	}
@@ -2742,7 +2857,8 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//FaultDetection:
 	//	'faultDetection' name=ID '{' 'type=' type=STRING 'detectedFaults=' handledFaults+=[Fault|QualifiedName] (','
-	//	handledFaults+=[Fault|QualifiedName])* '}' ';';
+	//	handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+	//	safetyReqs+=[SafetyRequirement])* '}' ';';
 	public FaultDetectionElements getFaultDetectionAccess() {
 		return pFaultDetection;
 	}
@@ -2753,7 +2869,8 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//FaultContainment:
 	//	'faultContainment' name=ID '{' 'type=' type=STRING 'containedFaults=' handledFaults+=[Fault|QualifiedName] (','
-	//	handledFaults+=[Fault|QualifiedName])* '}' ';';
+	//	handledFaults+=[Fault|QualifiedName])* 'satisfiedRequirements=' safetyReqs+=[SafetyRequirement] (','
+	//	safetyReqs+=[SafetyRequirement])* '}' ';';
 	public FaultContainmentElements getFaultContainmentAccess() {
 		return pFaultContainment;
 	}

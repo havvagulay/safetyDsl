@@ -867,6 +867,17 @@ public class SafetyDSLPackageImpl extends EPackageImpl implements SafetyDSLPacka
    * @generated
    */
   @Override
+  public EReference getSafetyTactic_SafetyReqs()
+  {
+    return (EReference)safetyTacticEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getFaultAvoidance()
   {
     return faultAvoidanceEClass;
@@ -1569,6 +1580,7 @@ public class SafetyDSLPackageImpl extends EPackageImpl implements SafetyDSLPacka
     createEAttribute(safetyTacticEClass, SAFETY_TACTIC__NAME);
     createEAttribute(safetyTacticEClass, SAFETY_TACTIC__TYPE);
     createEReference(safetyTacticEClass, SAFETY_TACTIC__HANDLED_FAULTS);
+    createEReference(safetyTacticEClass, SAFETY_TACTIC__SAFETY_REQS);
 
     faultAvoidanceEClass = createEClass(FAULT_AVOIDANCE);
 
@@ -1777,6 +1789,7 @@ public class SafetyDSLPackageImpl extends EPackageImpl implements SafetyDSLPacka
     initEAttribute(getSafetyTactic_Name(), ecorePackage.getEString(), "name", null, 0, 1, SafetyTactic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSafetyTactic_Type(), ecorePackage.getEString(), "type", null, 0, 1, SafetyTactic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSafetyTactic_HandledFaults(), this.getFault(), null, "handledFaults", null, 0, -1, SafetyTactic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSafetyTactic_SafetyReqs(), this.getSafetyRequirement(), null, "safetyReqs", null, 0, -1, SafetyTactic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(faultAvoidanceEClass, FaultAvoidance.class, "FaultAvoidance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -1271,13 +1271,49 @@ ruleFaultAvoidance returns [EObject current=null]
 				)
 			)
 		)*
-		otherlv_9='}'
+		otherlv_9='satisfiedRequirements='
 		{
-			newLeafNode(otherlv_9, grammarAccess.getFaultAvoidanceAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_9, grammarAccess.getFaultAvoidanceAccess().getSatisfiedRequirementsKeyword_8());
 		}
-		otherlv_10=';'
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFaultAvoidanceRule());
+					}
+				}
+				otherlv_10=RULE_ID
+				{
+					newLeafNode(otherlv_10, grammarAccess.getFaultAvoidanceAccess().getSafetyReqsSafetyRequirementCrossReference_9_0());
+				}
+			)
+		)
+		(
+			otherlv_11=','
+			{
+				newLeafNode(otherlv_11, grammarAccess.getFaultAvoidanceAccess().getCommaKeyword_10_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFaultAvoidanceRule());
+						}
+					}
+					otherlv_12=RULE_ID
+					{
+						newLeafNode(otherlv_12, grammarAccess.getFaultAvoidanceAccess().getSafetyReqsSafetyRequirementCrossReference_10_1_0());
+					}
+				)
+			)
+		)*
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_10, grammarAccess.getFaultAvoidanceAccess().getSemicolonKeyword_9());
+			newLeafNode(otherlv_13, grammarAccess.getFaultAvoidanceAccess().getRightCurlyBracketKeyword_11());
+		}
+		otherlv_14=';'
+		{
+			newLeafNode(otherlv_14, grammarAccess.getFaultAvoidanceAccess().getSemicolonKeyword_12());
 		}
 	)
 ;
@@ -1388,13 +1424,49 @@ ruleFaultDetection returns [EObject current=null]
 				)
 			)
 		)*
-		otherlv_9='}'
+		otherlv_9='satisfiedRequirements='
 		{
-			newLeafNode(otherlv_9, grammarAccess.getFaultDetectionAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_9, grammarAccess.getFaultDetectionAccess().getSatisfiedRequirementsKeyword_8());
 		}
-		otherlv_10=';'
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFaultDetectionRule());
+					}
+				}
+				otherlv_10=RULE_ID
+				{
+					newLeafNode(otherlv_10, grammarAccess.getFaultDetectionAccess().getSafetyReqsSafetyRequirementCrossReference_9_0());
+				}
+			)
+		)
+		(
+			otherlv_11=','
+			{
+				newLeafNode(otherlv_11, grammarAccess.getFaultDetectionAccess().getCommaKeyword_10_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFaultDetectionRule());
+						}
+					}
+					otherlv_12=RULE_ID
+					{
+						newLeafNode(otherlv_12, grammarAccess.getFaultDetectionAccess().getSafetyReqsSafetyRequirementCrossReference_10_1_0());
+					}
+				)
+			)
+		)*
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_10, grammarAccess.getFaultDetectionAccess().getSemicolonKeyword_9());
+			newLeafNode(otherlv_13, grammarAccess.getFaultDetectionAccess().getRightCurlyBracketKeyword_11());
+		}
+		otherlv_14=';'
+		{
+			newLeafNode(otherlv_14, grammarAccess.getFaultDetectionAccess().getSemicolonKeyword_12());
 		}
 	)
 ;
@@ -1505,13 +1577,49 @@ ruleFaultContainment returns [EObject current=null]
 				)
 			)
 		)*
-		otherlv_9='}'
+		otherlv_9='satisfiedRequirements='
 		{
-			newLeafNode(otherlv_9, grammarAccess.getFaultContainmentAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_9, grammarAccess.getFaultContainmentAccess().getSatisfiedRequirementsKeyword_8());
 		}
-		otherlv_10=';'
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFaultContainmentRule());
+					}
+				}
+				otherlv_10=RULE_ID
+				{
+					newLeafNode(otherlv_10, grammarAccess.getFaultContainmentAccess().getSafetyReqsSafetyRequirementCrossReference_9_0());
+				}
+			)
+		)
+		(
+			otherlv_11=','
+			{
+				newLeafNode(otherlv_11, grammarAccess.getFaultContainmentAccess().getCommaKeyword_10_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFaultContainmentRule());
+						}
+					}
+					otherlv_12=RULE_ID
+					{
+						newLeafNode(otherlv_12, grammarAccess.getFaultContainmentAccess().getSafetyReqsSafetyRequirementCrossReference_10_1_0());
+					}
+				)
+			)
+		)*
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_10, grammarAccess.getFaultContainmentAccess().getSemicolonKeyword_9());
+			newLeafNode(otherlv_13, grammarAccess.getFaultContainmentAccess().getRightCurlyBracketKeyword_11());
+		}
+		otherlv_14=';'
+		{
+			newLeafNode(otherlv_14, grammarAccess.getFaultContainmentAccess().getSemicolonKeyword_12());
 		}
 	)
 ;

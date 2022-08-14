@@ -411,7 +411,14 @@ public class SafetyDSLSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FaultAvoidance returns FaultAvoidance
 	 *
 	 * Constraint:
-	 *     (name=ID type=STRING handledFaults+=[Fault|QualifiedName] handledFaults+=[Fault|QualifiedName]*)
+	 *     (
+	 *         name=ID 
+	 *         type=STRING 
+	 *         handledFaults+=[Fault|QualifiedName] 
+	 *         handledFaults+=[Fault|QualifiedName]* 
+	 *         safetyReqs+=[SafetyRequirement|ID] 
+	 *         safetyReqs+=[SafetyRequirement|ID]*
+	 *     )
 	 */
 	protected void sequence_FaultAvoidance(ISerializationContext context, FaultAvoidance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -424,7 +431,14 @@ public class SafetyDSLSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FaultContainment returns FaultContainment
 	 *
 	 * Constraint:
-	 *     (name=ID type=STRING handledFaults+=[Fault|QualifiedName] handledFaults+=[Fault|QualifiedName]*)
+	 *     (
+	 *         name=ID 
+	 *         type=STRING 
+	 *         handledFaults+=[Fault|QualifiedName] 
+	 *         handledFaults+=[Fault|QualifiedName]* 
+	 *         safetyReqs+=[SafetyRequirement|ID] 
+	 *         safetyReqs+=[SafetyRequirement|ID]*
+	 *     )
 	 */
 	protected void sequence_FaultContainment(ISerializationContext context, FaultContainment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -437,7 +451,14 @@ public class SafetyDSLSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FaultDetection returns FaultDetection
 	 *
 	 * Constraint:
-	 *     (name=ID type=STRING handledFaults+=[Fault|QualifiedName] handledFaults+=[Fault|QualifiedName]*)
+	 *     (
+	 *         name=ID 
+	 *         type=STRING 
+	 *         handledFaults+=[Fault|QualifiedName] 
+	 *         handledFaults+=[Fault|QualifiedName]* 
+	 *         safetyReqs+=[SafetyRequirement|ID] 
+	 *         safetyReqs+=[SafetyRequirement|ID]*
+	 *     )
 	 */
 	protected void sequence_FaultDetection(ISerializationContext context, FaultDetection semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

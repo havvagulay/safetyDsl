@@ -53,6 +53,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SafetyDSL.ecore#//SafetyTactic/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SafetyDSL.ecore#//SafetyTactic/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SafetyDSL.ecore#//SafetyTactic/handledFaults"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SafetyDSL.ecore#//SafetyTactic/safetyReqs"/>
     </genClasses>
     <genClasses ecoreClass="SafetyDSL.ecore#//FaultAvoidance"/>
     <genClasses ecoreClass="SafetyDSL.ecore#//FaultDetection"/>

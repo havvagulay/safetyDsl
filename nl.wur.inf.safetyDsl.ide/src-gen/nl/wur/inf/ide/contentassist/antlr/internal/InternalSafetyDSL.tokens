@@ -3,55 +3,56 @@
 ','=27
 '.'=31
 ';'=11
-'='=65
-'A'=46
+'='=66
+'A'=47
 'AND'=23
-'B'=47
-'C'=48
-'Class-Test Case Relations'=63
-'D'=49
+'B'=48
+'C'=49
+'Class-Test Case Relations'=64
+'D'=50
 'Elements {'=14
 'Hazard View'=12
-'ImplementationRelations {'=61
-'Module-Class Relations'=62
+'ImplementationRelations {'=62
+'Module-Class Relations'=63
 'OR'=22
 'Relations {'=16
-'Safety-CriticalView'=39
+'Safety-CriticalView'=40
 'SafetyTacticView'=30
 'avoidedFaults='=34
 'causedBy'=29
 'causes'=28
-'commands'=54
-'composesOf'=64
+'commands'=55
+'composesOf'=65
 'consequence'=19
-'containedFaults='=38
-'criticalityLevel='=41
+'containedFaults='=39
+'criticalityLevel='=42
 'derivedFrom'=26
-'detectedFaults='=36
+'detectedFaults='=37
 'fault'=20
 'faultAvoidance'=32
-'faultContainment'=37
-'faultDetection'=35
+'faultContainment'=38
+'faultDetection'=36
 'faultTree'=21
-'hasState'=45
+'hasState'=46
 'hazard'=17
-'implementedSafetyRequirements='=42
-'implementedTactics='=43
-'inits'=57
-'monitor'=51
-'monitors'=59
-'non-safety-critical'=50
-'reads'=52
-'reportsFault'=60
-'restarts'=58
-'safety-critical'=40
+'implementedSafetyRequirements='=43
+'implementedTactics='=44
+'inits'=58
+'monitor'=52
+'monitors'=60
+'non-safety-critical'=51
+'reads'=53
+'reportsFault'=61
+'restarts'=59
+'safety-critical'=41
 'safetyRequirement'=18
-'starts'=56
-'stops'=55
-'sub-elements='=44
-'testWith'=66
+'satisfiedRequirements='=35
+'starts'=57
+'stops'=56
+'sub-elements='=45
+'testWith'=67
 'type='=33
-'writes'=53
+'writes'=54
 '{'=13
 '}'=15
 RULE_ANY_OTHER=10
@@ -117,3 +118,4 @@ T__63=63
 T__64=64
 T__65=65
 T__66=66
+T__67=67
