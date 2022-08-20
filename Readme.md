@@ -3,8 +3,7 @@ Safety DSL is built by leveraging [Xtext](https://www.eclipse.org/Xtext/), a lan
 
 Here is a screenshot from the text editor: 
 
-![alt text](img/dsltool.png "Safety DSL")
-
+<img src="img/dsltool.png" style="width:100px;"/>
 
 # Tool Setup and Run
 - Clone this repo
