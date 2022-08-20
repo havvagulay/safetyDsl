@@ -3,7 +3,7 @@ Safety DSL is built by leveraging [Xtext](https://www.eclipse.org/Xtext/), a lan
 
 Here is a screenshot from the text editor: 
 
-<img src="img/dsltool.png" style="width:100px;"/>
+<img src="img/dsltool.png" style="width:500px;"/>
 
 # Tool Setup and Run
 - Clone this repo
@@ -11,12 +11,12 @@ Here is a screenshot from the text editor:
 - Install [Xtext plugin](https://www.eclipse.org/Xtext/download.html) on Eclipse
     - Go to Help > Install New Software > Add > Enter one of the listed Update sites in [Xtext plugin](https://www.eclipse.org/Xtext/download.html)
     - Install Xtext SDK
-    - ![alt text](img/xtext-installation.png "Xtext installation")
+    - <img src="img/xtext-installation.png" style="width:500px;"/>
 - Open the repo within Eclipse Ide
 - Generate language artifacts from `nl.wur.inf.safetyDsl/src/nl/wur/inf/GenerateSafetyDSL.mwe2 > Right click > Run as > MWE2 Workflow` 
 
-![alt text](img/xtext1.png "Xtext1")
+<img src="img/xtext1.png" style="width:500px;"/>
 
 - Run ide project by `nl.wur.inf.safetyDsl.ide > Right click > Run as > Eclipse Application`. This will start a new instance of Eclipse. From this, create a Java project and in src folder copy the [safety model file](https://github.com/havvagulay/safetyDsl/blob/master/safetyModel/openPilotAlertManager.safety) and save it. The python scripts will be generated. Run the scripts to get results. 
 
-![alt text](img/xtext2.png "Xtext2")
+<img src="img/xtext1.png" style="width:500px;"/>
