@@ -5,7 +5,7 @@ Here is a screenshot from the text editor:
 
 <img src="img/dsltool.png" style="width:500px;"/>
 
-# Tool Setup and Run
+# Tool Setup and Run on Sample Use Case
 - Clone this repo
 - Install [Eclipse EMF](https://www.eclipse.org/downloads/packages/release/2022-06/r/eclipse-modeling-tools)
 - Install [Xtext plugin](https://www.eclipse.org/Xtext/download.html) on Eclipse
@@ -17,6 +17,10 @@ Here is a screenshot from the text editor:
 
 <img src="img/xtext1.png" style="width:500px;"/>
 
-- Run ide project by `nl.wur.inf.safetyDsl.ide > Right click > Run as > Eclipse Application`. This will start a new instance of Eclipse. From this, create a Java project and in src folder copy the [safety model file](https://github.com/havvagulay/safetyDsl/blob/master/safetyModel/openPilotAlertManager.safety) and save it. The python scripts will be generated. Run the scripts to get results. 
+- Run ide project by `nl.wur.inf.safetyDsl.ide > Right click > Run as > Eclipse Application`. This will start a new instance of Eclipse. From this, create a Java project and in src folder copy the [safety model file](https://github.com/havvagulay/safetyDsl/blob/master/safetyModel/openPilotAlertManager.safety) and save it. The python scripts will be generated. Run the scripts to get results for the sample case study.
 
 <img src="img/xtext1.png" style="width:500px;"/>
+
+## Sample Case Study
+- Clone [Openpilot](https://github.com/havvagulay/openpilot) project on to your machine. This is a fork of the actual [Openpilot](https://github.com/commaai/openpilot) project of the time when we applied our fault-based testing approach. 
+- You can run the generated script in the previous section to get results from mutant generation and test case execution.
