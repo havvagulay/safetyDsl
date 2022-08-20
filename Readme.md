@@ -8,7 +8,11 @@ Here is a screenshot from the text editor:
 
 Tool Setup and Run
 - Clone this repo
-- Install [Eclipse EMF with Xtext](https://www.eclipse.org/Xtext/documentation/308_emf_integration.html)
+- Install [Eclipse EMF](https://www.eclipse.org/downloads/packages/release/2022-06/r/eclipse-modeling-tools)
+- Install [Xtext plugin](https://www.eclipse.org/Xtext/download.html) on Eclipse
+    - Go to Help > Install New Software > Add > Enter one of the listed Update sites in [Xtext plugin](https://www.eclipse.org/Xtext/download.html)
+    - Install Xtext SDK
+    - ![alt text](img/xtext-installation.png "Xtext installation")
 - Open the repo within Eclipse Ide
 - Generate language artifacts from `nl.wur.inf.safetyDsl/src/nl/wur/inf/GenerateSafetyDSL.mwe2 > Right click > Run as > MWE2 Workflow` 
 
