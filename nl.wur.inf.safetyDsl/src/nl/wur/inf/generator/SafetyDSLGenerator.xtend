@@ -57,6 +57,8 @@ class SafetyDSLGenerator extends AbstractGenerator {
 		for(sr: safetyRequirements){
 			var code = new StringBuilder();
 			
+			code.append("import os \r\n\r\n")
+			
 			for(tactic : SRsAndTactics.get(sr)){
 				for(module : (tacticsAndModules.get(tactic))){
 					if(tactic.type.equalsIgnoreCase("SanityCheck") ||
@@ -161,7 +163,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 	'''
 	
 	def generatePython(SafetyTactic tactic,ArchitecturalElement module, String operators)'''
-	    mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o «operators» --report-html Report_T-«tactic.name»_M-«module.name»
+	    os.system("mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o «operators» --report-html Report_T-«tactic.name»_M-«module.name»")
 	'''
 	
 	def testCaseRun(SafetyTactic tactic, ArchitecturalElement module) '''
