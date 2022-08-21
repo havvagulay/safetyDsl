@@ -8,6 +8,7 @@ Here is a screenshot from the text editor:
 # Tool Setup and Run on Sample Use Case
 - Clone this repo
 - Install [Eclipse EMF](https://www.eclipse.org/downloads/packages/release/2022-06/r/eclipse-modeling-tools)
+- Run Eclipse download in previous step
 - Install [Xtext plugin](https://www.eclipse.org/Xtext/download.html) on Eclipse
     - Go to Help > Install New Software > Add > Enter one of the listed Update sites in [Xtext plugin](https://www.eclipse.org/Xtext/download.html)
     - Install Xtext SDK
