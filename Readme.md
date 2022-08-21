@@ -23,5 +23,5 @@ Here is a screenshot from the text editor:
 <img src="img/xtext1.png" style="width:500px;"/>
 
 ## Sample Case Study
-- Clone [Openpilot](https://github.com/havvagulay/openpilot) project on to your machine. This is a fork of the actual [Openpilot](https://github.com/commaai/openpilot) project of the time when we applied our fault-based testing approach. 
+- Clone [Openpilot](https://github.com/havvagulay/openpilot) project on to your machine. This is a fork of the actual [Openpilot](https://github.com/commaai/openpilot) project of the time when we applied our fault-based testing approach. Follow the instructions given [here](https://github.com/commaai/openpilot/blob/master/tools/README.md) to run Openpilot. 
 - You can run the generated script in the previous section to get results from mutant generation and test case execution.
