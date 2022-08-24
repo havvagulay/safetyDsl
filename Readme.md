@@ -1,16 +1,17 @@
 # Overview
-Safety DSL is built by leveraging [Xtext](https://www.eclipse.org/Xtext/), a language development framework provided as an Eclipse plug-in. The DSL is defined Xtext, we wrote our code generator using Xtend provided in Xtext framework for the safety DSL. Xtext and the corresponding code generator creates the parser and runnable language artifacts. From these artifacts, Xtext generates a full-featured Eclipse text editor. 
+Safety DSL is built by leveraging [Xtext](https://www.eclipse.org/Xtext/), a language development framework provided as an Eclipse plug-in. The DSL is defined Xtext, we implemented our code generator using Xtend from Xtext framework for the safety DSL. Xtext and the corresponding code generator create the parser and runnable language artifacts. From these artifacts, Xtext generates a full-featured Eclipse text editor for our DSL. 
 
 Here is a screenshot from the text editor: 
 
 <img src="img/dsltool.png" style="width:500px;"/>
 
+
 # Tool Setup and Run on Sample Use Case
 - Clone this repo
 - Install [Eclipse EMF](https://www.eclipse.org/downloads/packages/release/2022-06/r/eclipse-modeling-tools)
-- Run Eclipse download in previous step
+- Run Eclipse downloaded in previous step
 - Install [Xtext plugin](https://www.eclipse.org/Xtext/download.html) on Eclipse
-    - Go to Help > Install New Software > Add > Enter one of the listed Update sites in [Xtext plugin](https://www.eclipse.org/Xtext/download.html)
+    - Go to Help > Install New Software > Add > Enter one of the listed Update sites for [Xtext plugin](https://www.eclipse.org/Xtext/download.html)
     - Install Xtext SDK
     - <img src="img/xtext-installation.png" style="width:500px;"/>
 - Open the repo within Eclipse Ide
@@ -23,5 +24,7 @@ Here is a screenshot from the text editor:
 <img src="img/xtext1.png" style="width:500px;"/>
 
 ## Sample Case Study
-- Clone [Openpilot](https://github.com/havvagulay/openpilot) project on to your machine. This is a fork of the actual [Openpilot](https://github.com/commaai/openpilot) project of the time when we applied our fault-based testing approach. Follow the instructions given [here](https://github.com/commaai/openpilot/blob/master/tools/README.md) to run Openpilot. 
-- You can run the generated script in the previous section to get results from mutant generation and test case execution.
+- Clone [Openpilot](https://github.com/havvagulay/openpilot) project on to your machine. This is a fork of the actual [Openpilot](https://github.com/commaai/openpilot) project of the time when we applied our fault-based testing approach.
+    - Follow the instructions given [here](https://github.com/commaai/openpilot/blob/master/tools/README.md) to install and run Openpilot. 
+- You can run the generated scripts in the previous section to get results from mutant generation and test case execution.
+    - Follow the instructions given [here](https://github.com/mutpy/mutpy#installation) to install and run MutPy.
