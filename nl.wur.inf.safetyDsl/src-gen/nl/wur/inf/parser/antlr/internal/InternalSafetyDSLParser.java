@@ -7886,17 +7886,18 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleClassTestCaseRelation"
-    // InternalSafetyDSL.g:3157:1: ruleClassTestCaseRelation returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' ) ;
+    // InternalSafetyDSL.g:3157:1: ruleClassTestCaseRelation returns [EObject current=null] : ( ( (lv_clazz_0_0= ruleClassDef ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' ) ;
     public final EObject ruleClassTestCaseRelation() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
         Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
         Token otherlv_7=null;
         Token otherlv_8=null;
+        EObject lv_clazz_0_0 = null;
+
         AntlrDatatypeRuleToken lv_testCases_4_0 = null;
 
         AntlrDatatypeRuleToken lv_testCases_6_0 = null;
@@ -7906,26 +7907,36 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSafetyDSL.g:3163:2: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' ) )
-            // InternalSafetyDSL.g:3164:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' )
+            // InternalSafetyDSL.g:3163:2: ( ( ( (lv_clazz_0_0= ruleClassDef ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' ) )
+            // InternalSafetyDSL.g:3164:2: ( ( (lv_clazz_0_0= ruleClassDef ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' )
             {
-            // InternalSafetyDSL.g:3164:2: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' )
-            // InternalSafetyDSL.g:3165:3: ( (otherlv_0= RULE_ID ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';'
+            // InternalSafetyDSL.g:3164:2: ( ( (lv_clazz_0_0= ruleClassDef ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';' )
+            // InternalSafetyDSL.g:3165:3: ( (lv_clazz_0_0= ruleClassDef ) ) otherlv_1= 'testWith' otherlv_2= '=' otherlv_3= '{' ( (lv_testCases_4_0= ruleQualifiedName ) ) (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )* otherlv_7= '}' otherlv_8= ';'
             {
-            // InternalSafetyDSL.g:3165:3: ( (otherlv_0= RULE_ID ) )
-            // InternalSafetyDSL.g:3166:4: (otherlv_0= RULE_ID )
+            // InternalSafetyDSL.g:3165:3: ( (lv_clazz_0_0= ruleClassDef ) )
+            // InternalSafetyDSL.g:3166:4: (lv_clazz_0_0= ruleClassDef )
             {
-            // InternalSafetyDSL.g:3166:4: (otherlv_0= RULE_ID )
-            // InternalSafetyDSL.g:3167:5: otherlv_0= RULE_ID
+            // InternalSafetyDSL.g:3166:4: (lv_clazz_0_0= ruleClassDef )
+            // InternalSafetyDSL.g:3167:5: lv_clazz_0_0= ruleClassDef
             {
+
+            					newCompositeNode(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefParserRuleCall_0_0());
+            				
+            pushFollow(FOLLOW_58);
+            lv_clazz_0_0=ruleClassDef();
+
+            state._fsp--;
+
 
             					if (current==null) {
-            						current = createModelElement(grammarAccess.getClassTestCaseRelationRule());
+            						current = createModelElementForParent(grammarAccess.getClassTestCaseRelationRule());
             					}
-            				
-            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_58); 
-
-            					newLeafNode(otherlv_0, grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefCrossReference_0_0());
+            					set(
+            						current,
+            						"clazz",
+            						lv_clazz_0_0,
+            						"nl.wur.inf.SafetyDSL.ClassDef");
+            					afterParserOrEnumRuleCall();
             				
 
             }
@@ -7945,11 +7956,11 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_3, grammarAccess.getClassTestCaseRelationAccess().getLeftCurlyBracketKeyword_3());
             		
-            // InternalSafetyDSL.g:3190:3: ( (lv_testCases_4_0= ruleQualifiedName ) )
-            // InternalSafetyDSL.g:3191:4: (lv_testCases_4_0= ruleQualifiedName )
+            // InternalSafetyDSL.g:3196:3: ( (lv_testCases_4_0= ruleQualifiedName ) )
+            // InternalSafetyDSL.g:3197:4: (lv_testCases_4_0= ruleQualifiedName )
             {
-            // InternalSafetyDSL.g:3191:4: (lv_testCases_4_0= ruleQualifiedName )
-            // InternalSafetyDSL.g:3192:5: lv_testCases_4_0= ruleQualifiedName
+            // InternalSafetyDSL.g:3197:4: (lv_testCases_4_0= ruleQualifiedName )
+            // InternalSafetyDSL.g:3198:5: lv_testCases_4_0= ruleQualifiedName
             {
 
             					newCompositeNode(grammarAccess.getClassTestCaseRelationAccess().getTestCasesQualifiedNameParserRuleCall_4_0());
@@ -7976,7 +7987,7 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSafetyDSL.g:3209:3: (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )*
+            // InternalSafetyDSL.g:3215:3: (otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) ) )*
             loop53:
             do {
                 int alt53=2;
@@ -7989,17 +8000,17 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
                 switch (alt53) {
             	case 1 :
-            	    // InternalSafetyDSL.g:3210:4: otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) )
+            	    // InternalSafetyDSL.g:3216:4: otherlv_5= ',' ( (lv_testCases_6_0= ruleQualifiedName ) )
             	    {
             	    otherlv_5=(Token)match(input,26,FOLLOW_4); 
 
             	    				newLeafNode(otherlv_5, grammarAccess.getClassTestCaseRelationAccess().getCommaKeyword_5_0());
             	    			
-            	    // InternalSafetyDSL.g:3214:4: ( (lv_testCases_6_0= ruleQualifiedName ) )
-            	    // InternalSafetyDSL.g:3215:5: (lv_testCases_6_0= ruleQualifiedName )
+            	    // InternalSafetyDSL.g:3220:4: ( (lv_testCases_6_0= ruleQualifiedName ) )
+            	    // InternalSafetyDSL.g:3221:5: (lv_testCases_6_0= ruleQualifiedName )
             	    {
-            	    // InternalSafetyDSL.g:3215:5: (lv_testCases_6_0= ruleQualifiedName )
-            	    // InternalSafetyDSL.g:3216:6: lv_testCases_6_0= ruleQualifiedName
+            	    // InternalSafetyDSL.g:3221:5: (lv_testCases_6_0= ruleQualifiedName )
+            	    // InternalSafetyDSL.g:3222:6: lv_testCases_6_0= ruleQualifiedName
             	    {
 
             	    						newCompositeNode(grammarAccess.getClassTestCaseRelationAccess().getTestCasesQualifiedNameParserRuleCall_5_1_0());
@@ -8066,7 +8077,7 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleClassDef"
-    // InternalSafetyDSL.g:3246:1: entryRuleClassDef returns [EObject current=null] : iv_ruleClassDef= ruleClassDef EOF ;
+    // InternalSafetyDSL.g:3252:1: entryRuleClassDef returns [EObject current=null] : iv_ruleClassDef= ruleClassDef EOF ;
     public final EObject entryRuleClassDef() throws RecognitionException {
         EObject current = null;
 
@@ -8074,8 +8085,8 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSafetyDSL.g:3246:49: (iv_ruleClassDef= ruleClassDef EOF )
-            // InternalSafetyDSL.g:3247:2: iv_ruleClassDef= ruleClassDef EOF
+            // InternalSafetyDSL.g:3252:49: (iv_ruleClassDef= ruleClassDef EOF )
+            // InternalSafetyDSL.g:3253:2: iv_ruleClassDef= ruleClassDef EOF
             {
              newCompositeNode(grammarAccess.getClassDefRule()); 
             pushFollow(FOLLOW_1);
@@ -8102,7 +8113,7 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleClassDef"
-    // InternalSafetyDSL.g:3253:1: ruleClassDef returns [EObject current=null] : ( (lv_name_0_0= ruleQualifiedName ) ) ;
+    // InternalSafetyDSL.g:3259:1: ruleClassDef returns [EObject current=null] : ( (lv_name_0_0= ruleQualifiedName ) ) ;
     public final EObject ruleClassDef() throws RecognitionException {
         EObject current = null;
 
@@ -8113,14 +8124,14 @@ public class InternalSafetyDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSafetyDSL.g:3259:2: ( ( (lv_name_0_0= ruleQualifiedName ) ) )
-            // InternalSafetyDSL.g:3260:2: ( (lv_name_0_0= ruleQualifiedName ) )
+            // InternalSafetyDSL.g:3265:2: ( ( (lv_name_0_0= ruleQualifiedName ) ) )
+            // InternalSafetyDSL.g:3266:2: ( (lv_name_0_0= ruleQualifiedName ) )
             {
-            // InternalSafetyDSL.g:3260:2: ( (lv_name_0_0= ruleQualifiedName ) )
-            // InternalSafetyDSL.g:3261:3: (lv_name_0_0= ruleQualifiedName )
+            // InternalSafetyDSL.g:3266:2: ( (lv_name_0_0= ruleQualifiedName ) )
+            // InternalSafetyDSL.g:3267:3: (lv_name_0_0= ruleQualifiedName )
             {
-            // InternalSafetyDSL.g:3261:3: (lv_name_0_0= ruleQualifiedName )
-            // InternalSafetyDSL.g:3262:4: lv_name_0_0= ruleQualifiedName
+            // InternalSafetyDSL.g:3267:3: (lv_name_0_0= ruleQualifiedName )
+            // InternalSafetyDSL.g:3268:4: lv_name_0_0= ruleQualifiedName
             {
 
             				newCompositeNode(grammarAccess.getClassDefAccess().getNameQualifiedNameParserRuleCall_0());

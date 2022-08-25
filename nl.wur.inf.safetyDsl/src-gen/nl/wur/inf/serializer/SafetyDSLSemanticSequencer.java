@@ -318,7 +318,7 @@ public class SafetyDSLSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ClassTestCaseRelation returns ClassTestCaseRelation
 	 *
 	 * Constraint:
-	 *     (clazz=[ClassDef|ID] testCases+=QualifiedName testCases+=QualifiedName*)
+	 *     (clazz=ClassDef testCases+=QualifiedName testCases+=QualifiedName*)
 	 */
 	protected void sequence_ClassTestCaseRelation(ISerializationContext context, ClassTestCaseRelation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

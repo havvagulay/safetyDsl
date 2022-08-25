@@ -163,7 +163,7 @@ class SafetyDSLGenerator extends AbstractGenerator {
 	'''
 	
 	def generatePython(SafetyTactic tactic,ArchitecturalElement module, String operators)'''
-	    os.system("mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o «operators» --report-html Report_T-«tactic.name»_M-«module.name»")
+	    os.system("mut.py -t «FOR clazz: modulesAndClasses.get(module) SEPARATOR ' '» «clazz.name.replace('.', '/')».py «ENDFOR» -u «var relatedClazzes = modulesAndClasses.get(module)» «FOR key:relatedClazzes» «var testcases = findTestCases(key)» «FOR testcase:testcases SEPARATOR ' '» «testcase.replace('.', '/')».py «ENDFOR» «ENDFOR» -o «operators» --report-html Report_T-«tactic.name»_M-«module.name»")
 	'''
 	
 	def testCaseRun(SafetyTactic tactic, ArchitecturalElement module) '''
@@ -429,32 +429,6 @@ class SafetyDSLGenerator extends AbstractGenerator {
 
 		
 	}
-	
-	/*def getAllModulesAndSRs(Resource rs) {
-		
-			for(e: rs.allContents.filter(typeof(SafetyCriticalViewpoint)).toIterable) {
-				for(element : e.elements) {
-					if(element instanceof SafetyCritical){
-						for(sr : (element as SafetyCritical).getImplementedSafetyRequirements()){
-							if(!SRsAndModules.containsKey(sr)){
-								SRsAndModules.put(sr, new ArrayList<ArchitecturalElement>);	
-							}
-							SRsAndModules.get(sr).add(element as SafetyCritical);						
-						}
-					}
-					else if(element instanceof Monitor){
-						for(sr : (element as Monitor).getImplementedSafetyRequirements()){
-							if(!SRsAndModules.containsKey(sr)){
-								SRsAndModules.put(sr, new ArrayList<ArchitecturalElement>);	
-							}
-							SRsAndModules.get(sr).add(element as Monitor);	
-						}
-					}
-				}
-			}
-
-		
-	}*/
 	
 	
 

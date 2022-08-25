@@ -3165,13 +3165,19 @@ ruleClassTestCaseRelation returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getClassTestCaseRelationRule());
-					}
+					newCompositeNode(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefParserRuleCall_0_0());
 				}
-				otherlv_0=RULE_ID
+				lv_clazz_0_0=ruleClassDef
 				{
-					newLeafNode(otherlv_0, grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefCrossReference_0_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClassTestCaseRelationRule());
+					}
+					set(
+						$current,
+						"clazz",
+						lv_clazz_0_0,
+						"nl.wur.inf.SafetyDSL.ClassDef");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)

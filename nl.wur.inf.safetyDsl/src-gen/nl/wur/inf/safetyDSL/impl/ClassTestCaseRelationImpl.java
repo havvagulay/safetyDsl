@@ -10,6 +10,7 @@ import nl.wur.inf.safetyDSL.ClassTestCaseRelation;
 import nl.wur.inf.safetyDSL.SafetyDSLPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 public class ClassTestCaseRelationImpl extends MinimalEObjectImpl.Container implements ClassTestCaseRelation
 {
   /**
-   * The cached value of the '{@link #getClazz() <em>Clazz</em>}' reference.
+   * The cached value of the '{@link #getClazz() <em>Clazz</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getClazz()
@@ -86,16 +87,6 @@ public class ClassTestCaseRelationImpl extends MinimalEObjectImpl.Container impl
   @Override
   public ClassDef getClazz()
   {
-    if (clazz != null && clazz.eIsProxy())
-    {
-      InternalEObject oldClazz = (InternalEObject)clazz;
-      clazz = (ClassDef)eResolveProxy(oldClazz);
-      if (clazz != oldClazz)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ, oldClazz, clazz));
-      }
-    }
     return clazz;
   }
 
@@ -104,9 +95,16 @@ public class ClassTestCaseRelationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public ClassDef basicGetClazz()
+  public NotificationChain basicSetClazz(ClassDef newClazz, NotificationChain msgs)
   {
-    return clazz;
+    ClassDef oldClazz = clazz;
+    clazz = newClazz;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ, oldClazz, newClazz);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -117,10 +115,18 @@ public class ClassTestCaseRelationImpl extends MinimalEObjectImpl.Container impl
   @Override
   public void setClazz(ClassDef newClazz)
   {
-    ClassDef oldClazz = clazz;
-    clazz = newClazz;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ, oldClazz, clazz));
+    if (newClazz != clazz)
+    {
+      NotificationChain msgs = null;
+      if (clazz != null)
+        msgs = ((InternalEObject)clazz).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ, null, msgs);
+      if (newClazz != null)
+        msgs = ((InternalEObject)newClazz).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ, null, msgs);
+      msgs = basicSetClazz(newClazz, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ, newClazz, newClazz));
   }
 
   /**
@@ -144,13 +150,28 @@ public class ClassTestCaseRelationImpl extends MinimalEObjectImpl.Container impl
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ:
+        return basicSetClazz(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case SafetyDSLPackage.CLASS_TEST_CASE_RELATION__CLAZZ:
-        if (resolve) return getClazz();
-        return basicGetClazz();
+        return getClazz();
       case SafetyDSLPackage.CLASS_TEST_CASE_RELATION__TEST_CASES:
         return getTestCases();
     }

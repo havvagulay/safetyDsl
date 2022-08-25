@@ -1845,7 +1845,7 @@ public class SafetyDSLPackageImpl extends EPackageImpl implements SafetyDSLPacka
     initEReference(getModuleClassRelation_Classes(), this.getClassDef(), null, "classes", null, 0, -1, ModuleClassRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(classTestCaseRelationEClass, ClassTestCaseRelation.class, "ClassTestCaseRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getClassTestCaseRelation_Clazz(), this.getClassDef(), null, "clazz", null, 0, 1, ClassTestCaseRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getClassTestCaseRelation_Clazz(), this.getClassDef(), null, "clazz", null, 0, 1, ClassTestCaseRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getClassTestCaseRelation_TestCases(), ecorePackage.getEString(), "testCases", null, 0, -1, ClassTestCaseRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(classDefEClass, ClassDef.class, "ClassDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -27,22 +27,22 @@ import org.eclipse.emf.ecore.EObject;
 public interface ClassTestCaseRelation extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Clazz</b></em>' reference.
+   * Returns the value of the '<em><b>Clazz</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Clazz</em>' reference.
+   * @return the value of the '<em>Clazz</em>' containment reference.
    * @see #setClazz(ClassDef)
    * @see nl.wur.inf.safetyDSL.SafetyDSLPackage#getClassTestCaseRelation_Clazz()
-   * @model
+   * @model containment="true"
    * @generated
    */
   ClassDef getClazz();
 
   /**
-   * Sets the value of the '{@link nl.wur.inf.safetyDSL.ClassTestCaseRelation#getClazz <em>Clazz</em>}' reference.
+   * Sets the value of the '{@link nl.wur.inf.safetyDSL.ClassTestCaseRelation#getClazz <em>Clazz</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Clazz</em>' reference.
+   * @param value the new value of the '<em>Clazz</em>' containment reference.
    * @see #getClazz()
    * @generated
    */

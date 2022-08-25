@@ -1279,7 +1279,7 @@ public interface SafetyDSLPackage extends EPackage
   int CLASS_TEST_CASE_RELATION = 32;
 
   /**
-   * The feature id for the '<em><b>Clazz</b></em>' reference.
+   * The feature id for the '<em><b>Clazz</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2608,10 +2608,10 @@ public interface SafetyDSLPackage extends EPackage
   EClass getClassTestCaseRelation();
 
   /**
-   * Returns the meta object for the reference '{@link nl.wur.inf.safetyDSL.ClassTestCaseRelation#getClazz <em>Clazz</em>}'.
+   * Returns the meta object for the containment reference '{@link nl.wur.inf.safetyDSL.ClassTestCaseRelation#getClazz <em>Clazz</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Clazz</em>'.
+   * @return the meta object for the containment reference '<em>Clazz</em>'.
    * @see nl.wur.inf.safetyDSL.ClassTestCaseRelation#getClazz()
    * @see #getClassTestCaseRelation()
    * @generated
@@ -3482,7 +3482,7 @@ public interface SafetyDSLPackage extends EPackage
     EClass CLASS_TEST_CASE_RELATION = eINSTANCE.getClassTestCaseRelation();
 
     /**
-     * The meta object literal for the '<em><b>Clazz</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Clazz</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

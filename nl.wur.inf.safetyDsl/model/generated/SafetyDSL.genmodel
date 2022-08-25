@@ -104,7 +104,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SafetyDSL.ecore#//ModuleClassRelation/classes"/>
     </genClasses>
     <genClasses ecoreClass="SafetyDSL.ecore#//ClassTestCaseRelation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SafetyDSL.ecore#//ClassTestCaseRelation/clazz"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SafetyDSL.ecore#//ClassTestCaseRelation/clazz"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SafetyDSL.ecore#//ClassTestCaseRelation/testCases"/>
     </genClasses>
     <genClasses ecoreClass="SafetyDSL.ecore#//ClassDef">

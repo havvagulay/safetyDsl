@@ -173,7 +173,7 @@ ModuleClassRelation:
 ;
 
 ClassTestCaseRelation:
-	clazz=[ClassDef] 'testWith' '=' '{'  (testCases+=QualifiedName) (',' testCases+=QualifiedName)* '}' ';'
+	clazz=(ClassDef) 'testWith' '=' '{'  (testCases+=QualifiedName) (',' testCases+=QualifiedName)* '}' ';'
 ;
 
 ClassDef:

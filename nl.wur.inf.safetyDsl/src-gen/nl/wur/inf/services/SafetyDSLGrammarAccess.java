@@ -2454,8 +2454,7 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "nl.wur.inf.SafetyDSL.ClassTestCaseRelation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cClazzAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cClazzClassDefCrossReference_0_0 = (CrossReference)cClazzAssignment_0.eContents().get(0);
-		private final RuleCall cClazzClassDefIDTerminalRuleCall_0_0_1 = (RuleCall)cClazzClassDefCrossReference_0_0.eContents().get(1);
+		private final RuleCall cClazzClassDefParserRuleCall_0_0 = (RuleCall)cClazzAssignment_0.eContents().get(0);
 		private final Keyword cTestWithKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -2469,20 +2468,17 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//ClassTestCaseRelation:
-		//	clazz=[ClassDef] 'testWith' '=' '{' testCases+=QualifiedName (',' testCases+=QualifiedName)* '}' ';';
+		//	clazz=ClassDef 'testWith' '=' '{' testCases+=QualifiedName (',' testCases+=QualifiedName)* '}' ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//clazz=[ClassDef] 'testWith' '=' '{' testCases+=QualifiedName (',' testCases+=QualifiedName)* '}' ';'
+		//clazz=ClassDef 'testWith' '=' '{' testCases+=QualifiedName (',' testCases+=QualifiedName)* '}' ';'
 		public Group getGroup() { return cGroup; }
 		
-		//clazz=[ClassDef]
+		//clazz=ClassDef
 		public Assignment getClazzAssignment_0() { return cClazzAssignment_0; }
 		
-		//[ClassDef]
-		public CrossReference getClazzClassDefCrossReference_0_0() { return cClazzClassDefCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getClazzClassDefIDTerminalRuleCall_0_0_1() { return cClazzClassDefIDTerminalRuleCall_0_0_1; }
+		//ClassDef
+		public RuleCall getClazzClassDefParserRuleCall_0_0() { return cClazzClassDefParserRuleCall_0_0; }
 		
 		//'testWith'
 		public Keyword getTestWithKeyword_1() { return cTestWithKeyword_1; }
@@ -3038,7 +3034,7 @@ public class SafetyDSLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ClassTestCaseRelation:
-	//	clazz=[ClassDef] 'testWith' '=' '{' testCases+=QualifiedName (',' testCases+=QualifiedName)* '}' ';';
+	//	clazz=ClassDef 'testWith' '=' '{' testCases+=QualifiedName (',' testCases+=QualifiedName)* '}' ';';
 	public ClassTestCaseRelationElements getClassTestCaseRelationAccess() {
 		return pClassTestCaseRelation;
 	}

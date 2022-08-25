@@ -32957,29 +32957,25 @@ public class InternalSafetyDSLParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ClassTestCaseRelation__ClazzAssignment_0"
-    // InternalSafetyDSL.g:11142:1: rule__ClassTestCaseRelation__ClazzAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalSafetyDSL.g:11142:1: rule__ClassTestCaseRelation__ClazzAssignment_0 : ( ruleClassDef ) ;
     public final void rule__ClassTestCaseRelation__ClazzAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSafetyDSL.g:11146:1: ( ( ( RULE_ID ) ) )
-            // InternalSafetyDSL.g:11147:2: ( ( RULE_ID ) )
+            // InternalSafetyDSL.g:11146:1: ( ( ruleClassDef ) )
+            // InternalSafetyDSL.g:11147:2: ( ruleClassDef )
             {
-            // InternalSafetyDSL.g:11147:2: ( ( RULE_ID ) )
-            // InternalSafetyDSL.g:11148:3: ( RULE_ID )
+            // InternalSafetyDSL.g:11147:2: ( ruleClassDef )
+            // InternalSafetyDSL.g:11148:3: ruleClassDef
             {
-             before(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefCrossReference_0_0()); 
-            // InternalSafetyDSL.g:11149:3: ( RULE_ID )
-            // InternalSafetyDSL.g:11150:4: RULE_ID
-            {
-             before(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefParserRuleCall_0_0()); 
+            pushFollow(FOLLOW_2);
+            ruleClassDef();
 
-            }
+            state._fsp--;
 
-             after(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefCrossReference_0_0()); 
+             after(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefParserRuleCall_0_0()); 
 
             }
 
@@ -33002,17 +32998,17 @@ public class InternalSafetyDSLParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ClassTestCaseRelation__TestCasesAssignment_4"
-    // InternalSafetyDSL.g:11161:1: rule__ClassTestCaseRelation__TestCasesAssignment_4 : ( ruleQualifiedName ) ;
+    // InternalSafetyDSL.g:11157:1: rule__ClassTestCaseRelation__TestCasesAssignment_4 : ( ruleQualifiedName ) ;
     public final void rule__ClassTestCaseRelation__TestCasesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSafetyDSL.g:11165:1: ( ( ruleQualifiedName ) )
-            // InternalSafetyDSL.g:11166:2: ( ruleQualifiedName )
+            // InternalSafetyDSL.g:11161:1: ( ( ruleQualifiedName ) )
+            // InternalSafetyDSL.g:11162:2: ( ruleQualifiedName )
             {
-            // InternalSafetyDSL.g:11166:2: ( ruleQualifiedName )
-            // InternalSafetyDSL.g:11167:3: ruleQualifiedName
+            // InternalSafetyDSL.g:11162:2: ( ruleQualifiedName )
+            // InternalSafetyDSL.g:11163:3: ruleQualifiedName
             {
              before(grammarAccess.getClassTestCaseRelationAccess().getTestCasesQualifiedNameParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -33043,17 +33039,17 @@ public class InternalSafetyDSLParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ClassTestCaseRelation__TestCasesAssignment_5_1"
-    // InternalSafetyDSL.g:11176:1: rule__ClassTestCaseRelation__TestCasesAssignment_5_1 : ( ruleQualifiedName ) ;
+    // InternalSafetyDSL.g:11172:1: rule__ClassTestCaseRelation__TestCasesAssignment_5_1 : ( ruleQualifiedName ) ;
     public final void rule__ClassTestCaseRelation__TestCasesAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSafetyDSL.g:11180:1: ( ( ruleQualifiedName ) )
-            // InternalSafetyDSL.g:11181:2: ( ruleQualifiedName )
+            // InternalSafetyDSL.g:11176:1: ( ( ruleQualifiedName ) )
+            // InternalSafetyDSL.g:11177:2: ( ruleQualifiedName )
             {
-            // InternalSafetyDSL.g:11181:2: ( ruleQualifiedName )
-            // InternalSafetyDSL.g:11182:3: ruleQualifiedName
+            // InternalSafetyDSL.g:11177:2: ( ruleQualifiedName )
+            // InternalSafetyDSL.g:11178:3: ruleQualifiedName
             {
              before(grammarAccess.getClassTestCaseRelationAccess().getTestCasesQualifiedNameParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
@@ -33084,17 +33080,17 @@ public class InternalSafetyDSLParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ClassDef__NameAssignment"
-    // InternalSafetyDSL.g:11191:1: rule__ClassDef__NameAssignment : ( ruleQualifiedName ) ;
+    // InternalSafetyDSL.g:11187:1: rule__ClassDef__NameAssignment : ( ruleQualifiedName ) ;
     public final void rule__ClassDef__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSafetyDSL.g:11195:1: ( ( ruleQualifiedName ) )
-            // InternalSafetyDSL.g:11196:2: ( ruleQualifiedName )
+            // InternalSafetyDSL.g:11191:1: ( ( ruleQualifiedName ) )
+            // InternalSafetyDSL.g:11192:2: ( ruleQualifiedName )
             {
-            // InternalSafetyDSL.g:11196:2: ( ruleQualifiedName )
-            // InternalSafetyDSL.g:11197:3: ruleQualifiedName
+            // InternalSafetyDSL.g:11192:2: ( ruleQualifiedName )
+            // InternalSafetyDSL.g:11193:3: ruleQualifiedName
             {
              before(grammarAccess.getClassDefAccess().getNameQualifiedNameParserRuleCall_0()); 
             pushFollow(FOLLOW_2);

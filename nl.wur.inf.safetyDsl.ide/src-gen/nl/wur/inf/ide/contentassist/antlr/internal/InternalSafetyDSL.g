@@ -11145,13 +11145,9 @@ rule__ClassTestCaseRelation__ClazzAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefCrossReference_0_0()); }
-		(
-			{ before(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefIDTerminalRuleCall_0_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefIDTerminalRuleCall_0_0_1()); }
-		)
-		{ after(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefCrossReference_0_0()); }
+		{ before(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefParserRuleCall_0_0()); }
+		ruleClassDef
+		{ after(grammarAccess.getClassTestCaseRelationAccess().getClazzClassDefParserRuleCall_0_0()); }
 	)
 ;
 finally {
