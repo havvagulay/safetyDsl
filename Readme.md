@@ -7,14 +7,13 @@ Here is a screenshot from the text editor:
 
 
 # Tool Setup and Run on Sample Use Case
-- Clone this repo
 - Install [Eclipse EMF](https://www.eclipse.org/downloads/packages/release/2022-06/r/eclipse-modeling-tools)
 - Run Eclipse downloaded in previous step
 - Install [Xtext plugin](https://www.eclipse.org/Xtext/download.html) on Eclipse
     - Go to Help > Install New Software > Add > Enter one of the listed Update sites for [Xtext plugin](https://www.eclipse.org/Xtext/download.html)
     - Install Xtext SDK
     - <img src="img/xtext-installation.png" style="width:500px;"/>
-- Open the repo within Eclipse Ide
+- - Clone this repo and open it within Eclipse Ide
 - Generate language artifacts from `nl.wur.inf.safetyDsl/src/nl/wur/inf/GenerateSafetyDSL.mwe2 > Right click > Run as > MWE2 Workflow` 
 
 <img src="img/xtext1.png" style="width:500px;"/>
